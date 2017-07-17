@@ -1,0 +1,74 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myDosenLabel" data-translate="semhasApp.dosen.home.createOrEditLabel">Create or edit a Dosen</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.dosen.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.dosen.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.dosen.nama" for="field_nama">Nama</label>
+            <input type="text" class="form-control" name="nama" id="field_nama"
+                    ng-model="vm.dosen.nama"
+                    required/>
+            <div ng-show="editForm.nama.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nama.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.dosen.nip" for="field_nip">Nip</label>
+            <input type="text" class="form-control" name="nip" id="field_nip"
+                    ng-model="vm.dosen.nip"
+                    required/>
+            <div ng-show="editForm.nip.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nip.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.dosen.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.dosen.email"
+                    required/>
+            <div ng-show="editForm.email.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.email.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.dosen.nomorTelepon" for="field_nomorTelepon">Nomor Telepon</label>
+            <input type="text" class="form-control" name="nomorTelepon" id="field_nomorTelepon"
+                    ng-model="vm.dosen.nomorTelepon"
+                    required/>
+            <div ng-show="editForm.nomorTelepon.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nomorTelepon.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

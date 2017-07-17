@@ -1,0 +1,25 @@
+{
+    "semhasApp": {
+        "jadwalSeminar" : {
+            "home": {
+                "title": "Jadwal Seminars",
+                "createLabel": "Create a new Jadwal Seminar",
+                "createOrEditLabel": "Create or edit a Jadwal Seminar"
+            },
+            "created": "A new Jadwal Seminar is created with identifier {{ param }}",
+            "updated": "A Jadwal Seminar is updated with identifier {{ param }}",
+            "deleted": "A Jadwal Seminar is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Jadwal Seminar {{ id }}?"
+            },
+            "detail": {
+                "title": "Jadwal Seminar"
+            },
+            "tanggal": "Tanggal",
+            "tersedia": "Tersedia",
+            "sesi": "Sesi",
+            "ruang": "Ruang",
+            "seminar": "Seminar"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "semhasApp": {
+        "AbsensiSeminar" : {
+            "null": "",
+            "HADIR": "HADIR",
+            "ABSEN": "ABSEN"
+        }
+    }
+}

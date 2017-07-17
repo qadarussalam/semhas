@@ -1,0 +1,24 @@
+{
+    "semhasApp": {
+        "sesi" : {
+            "home": {
+                "title": "Sesis",
+                "createLabel": "Create a new Sesi",
+                "createOrEditLabel": "Create or edit a Sesi"
+            },
+            "created": "A new Sesi is created with identifier {{ param }}",
+            "updated": "A Sesi is updated with identifier {{ param }}",
+            "deleted": "A Sesi is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sesi {{ id }}?"
+            },
+            "detail": {
+                "title": "Sesi"
+            },
+            "urutan": "Urutan",
+            "jamMulai": "Jam Mulai",
+            "jamSelesai": "Jam Selesai",
+            "listJadwalSeminar": "List Jadwal Seminar"
+        }
+    }
+}

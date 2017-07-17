@@ -1,0 +1,135 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySeminarLabel" data-translate="semhasApp.seminar.home.createOrEditLabel">Create or edit a Seminar</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.seminar.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.seminar.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.judul" for="field_judul">Judul</label>
+            <input type="text" class="form-control" name="judul" id="field_judul"
+                    ng-model="vm.seminar.judul"
+                    required/>
+            <div ng-show="editForm.judul.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.judul.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.abstrak" for="field_abstrak">Abstrak</label>
+                <textarea class="form-control" name="abstrak" id="field_abstrak"
+                    ng-model="vm.seminar.abstrak" required></textarea>
+            <div ng-show="editForm.abstrak.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.abstrak.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setFileAccSeminar($file, vm.seminar)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="semhasApp.seminar.fileAccSeminar" for="field_fileAccSeminar">File Acc Seminar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.seminar.fileAccSeminarContentType + ';base64,' + vm.seminar.fileAccSeminar}}" style="max-height: 100px;" ng-if="vm.seminar.fileAccSeminar" alt="seminar image"/>
+                <div ng-if="vm.seminar.fileAccSeminar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.seminar.fileAccSeminarContentType}}, {{vm.byteSize(vm.seminar.fileAccSeminar)}}</span>
+                    <button type="button" ng-click="vm.seminar.fileAccSeminar=null;vm.seminar.fileAccSeminarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setFileAccSeminar($file, vm.seminar)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="fileAccSeminar" id="field_fileAccSeminar"
+                    ng-model="vm.seminar.fileAccSeminar"
+                    required/>
+            <input type="hidden" class="form-control" name="fileAccSeminarContentType" id="field_fileAccSeminarContentType"
+                    ng-model="vm.seminar.fileAccSeminarContentType" />
+            <div ng-show="editForm.fileAccSeminar.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fileAccSeminar.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.ruangan" for="field_ruangan">Ruangan</label>
+            <input type="text" class="form-control" name="ruangan" id="field_ruangan"
+                    ng-model="vm.seminar.ruangan"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.jamMulai" for="field_jamMulai">Jam Mulai</label>
+                <div class="input-group">
+                    <input id="field_jamMulai" type="text" class="form-control" name="jamMulai" datetime-picker="{{dateformat}}" ng-model="vm.seminar.jamMulai" is-open="vm.datePickerOpenStatus.jamMulai"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('jamMulai')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.jamSelesai" for="field_jamSelesai">Jam Selesai</label>
+                <div class="input-group">
+                    <input id="field_jamSelesai" type="text" class="form-control" name="jamSelesai" datetime-picker="{{dateformat}}" ng-model="vm.seminar.jamSelesai" is-open="vm.datePickerOpenStatus.jamSelesai"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('jamSelesai')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="vm.seminar.status" id="field_status">
+                <option value="MENUNGGU_PERSETUJUAN" data-translate="semhasApp.StatusSeminar.MENUNGGU_PERSETUJUAN">MENUNGGU_PERSETUJUAN</option>
+                <option value="DISETUJUI" data-translate="semhasApp.StatusSeminar.DISETUJUI">DISETUJUI</option>
+                <option value="BATAL" data-translate="semhasApp.StatusSeminar.BATAL">BATAL</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.mahasiswa" for="field_mahasiswa">Mahasiswa</label>
+            <select class="form-control" id="field_mahasiswa" name="mahasiswa" ng-model="vm.seminar.mahasiswaId" ng-options="mahasiswa.id as mahasiswa.id for mahasiswa in vm.mahasiswas | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.jadwalSeminar" for="field_jadwalSeminar">Jadwal Seminar</label>
+            <select class="form-control" id="field_jadwalSeminar" name="jadwalSeminar" ng-model="vm.seminar.jadwalSeminarId" ng-options="jadwalSeminar.id as jadwalSeminar.id for jadwalSeminar in vm.jadwalseminars | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.dosenPertama" for="field_dosenPertama">Dosen Pertama</label>
+            <select class="form-control" id="field_dosenPertama" name="dosenPertama" ng-model="vm.seminar.dosenPertamaId" ng-options="dosen.id as dosen.id for dosen in vm.dosens"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.dosenKedua" for="field_dosenKedua">Dosen Kedua</label>
+            <select class="form-control" id="field_dosenKedua" name="dosenKedua" ng-model="vm.seminar.dosenKeduaId" ng-options="dosen.id as dosen.id for dosen in vm.dosens"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

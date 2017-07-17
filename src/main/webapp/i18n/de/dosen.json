@@ -1,0 +1,24 @@
+{
+    "semhasApp": {
+        "dosen" : {
+            "home": {
+                "title": "Dosens",
+                "createLabel": "Dosen erstellen",
+                "createOrEditLabel": "Dosen erstellen oder bearbeiten"
+            },
+            "created": "Dosen erstellt mit ID {{ param }}",
+            "updated": "Dosen aktualisiert mit ID {{ param }}",
+            "deleted": "Dosen gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Dosen {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Dosen"
+            },
+            "nama": "Nama",
+            "nip": "Nip",
+            "email": "Email",
+            "nomorTelepon": "Nomor Telepon"
+        }
+    }
+}

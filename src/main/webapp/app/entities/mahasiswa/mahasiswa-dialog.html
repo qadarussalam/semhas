@@ -1,0 +1,118 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myMahasiswaLabel" data-translate="semhasApp.mahasiswa.home.createOrEditLabel">Create or edit a Mahasiswa</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.mahasiswa.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.mahasiswa.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.nama" for="field_nama">Nama</label>
+            <input type="text" class="form-control" name="nama" id="field_nama"
+                    ng-model="vm.mahasiswa.nama"
+                    required/>
+            <div ng-show="editForm.nama.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nama.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.nim" for="field_nim">Nim</label>
+            <input type="text" class="form-control" name="nim" id="field_nim"
+                    ng-model="vm.mahasiswa.nim"
+                    required/>
+            <div ng-show="editForm.nim.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nim.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.semester" for="field_semester">Semester</label>
+            <input type="number" class="form-control" name="semester" id="field_semester"
+                    ng-model="vm.mahasiswa.semester"
+                    required/>
+            <div ng-show="editForm.semester.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.semester.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.semester.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.mahasiswa.email"
+                    required/>
+            <div ng-show="editForm.email.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.email.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.nomorTelepon" for="field_nomorTelepon">Nomor Telepon</label>
+            <input type="text" class="form-control" name="nomorTelepon" id="field_nomorTelepon"
+                    ng-model="vm.mahasiswa.nomorTelepon"
+                    />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setFoto($file, vm.mahasiswa)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.foto" for="field_foto">Foto</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.mahasiswa.fotoContentType + ';base64,' + vm.mahasiswa.foto}}" style="max-height: 100px;" ng-if="vm.mahasiswa.foto" alt="mahasiswa image"/>
+                <div ng-if="vm.mahasiswa.foto" class="help-block clearfix">
+                    <span class="pull-left">{{vm.mahasiswa.fotoContentType}}, {{vm.byteSize(vm.mahasiswa.foto)}}</span>
+                    <button type="button" ng-click="vm.mahasiswa.foto=null;vm.mahasiswa.fotoContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setFoto($file, vm.mahasiswa)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="foto" id="field_foto"
+                    ng-model="vm.mahasiswa.foto"
+                    required/>
+            <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
+                    ng-model="vm.mahasiswa.fotoContentType" />
+            <div ng-show="editForm.foto.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.foto.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="semhasApp.mahasiswa.jurusan" for="field_jurusan">Jurusan</label>
+            <select class="form-control" id="field_jurusan" name="jurusan" ng-model="vm.mahasiswa.jurusanId" ng-options="jurusan.id as jurusan.id for jurusan in vm.jurusans"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+{
+    "semhasApp": {
+        "jurusan" : {
+            "home": {
+                "title": "Jurusans",
+                "createLabel": "Create a new Jurusan",
+                "createOrEditLabel": "Create or edit a Jurusan"
+            },
+            "created": "A new Jurusan is created with identifier {{ param }}",
+            "updated": "A Jurusan is updated with identifier {{ param }}",
+            "deleted": "A Jurusan is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Jurusan {{ id }}?"
+            },
+            "detail": {
+                "title": "Jurusan"
+            },
+            "nama": "Nama",
+            "listMahasiswa": "List Mahasiswa"
+        }
+    }
+}

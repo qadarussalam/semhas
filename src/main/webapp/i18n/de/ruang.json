@@ -1,0 +1,23 @@
+{
+    "semhasApp": {
+        "ruang" : {
+            "home": {
+                "title": "Ruangs",
+                "createLabel": "Ruang erstellen",
+                "createOrEditLabel": "Ruang erstellen oder bearbeiten"
+            },
+            "created": "Ruang erstellt mit ID {{ param }}",
+            "updated": "Ruang aktualisiert mit ID {{ param }}",
+            "deleted": "Ruang gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Ruang {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Ruang"
+            },
+            "nama": "Nama",
+            "kapasitas": "Kapasitas",
+            "listJadwalSeminar": "List Jadwal Seminar"
+        }
+    }
+}

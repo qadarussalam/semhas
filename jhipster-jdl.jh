@@ -1,0 +1,90 @@
+
+// enum
+enum AbsensiSeminar {
+    	HADIR, ABSEN
+}
+enum StatusSeminar {
+    	MENUNGGU_PERSETUJUAN, DISETUJUI, BATAL
+}
+
+// entity
+entity Jurusan {
+	nama String required minlength(5)
+}
+entity Mahasiswa {
+	nama String required
+    nim String required
+    semester Integer required
+    email String required
+    nomorTelepon String
+    foto ImageBlob required   
+}
+entity Dosen {
+	nama String required
+    nip String required
+    email String required
+    nomorTelepon String required
+}
+entity PesertaSeminar {
+	absensi AbsensiSeminar
+}
+entity Seminar {
+	judul String required
+    abstrak TextBlob required
+    fileAccSeminar ImageBlob required
+    ruangan String
+    jamMulai ZonedDateTime
+    jamSelesai ZonedDateTime
+    status StatusSeminar
+}
+entity JadwalSeminar {
+	tanggal ZonedDateTime
+    tersedia Boolean
+}
+entity Ruang {
+	nama String
+    kapasitas Integer
+}
+entity Sesi {
+	urutan Integer
+    jamMulai ZonedDateTime
+    jamSelesai ZonedDateTime
+}
+
+// relationship
+relationship ManyToOne {
+	Seminar {dosenPertama} to Dosen
+}
+relationship ManyToOne {
+	Seminar {dosenKedua} to Dosen
+}
+relationship ManyToOne {
+	Mahasiswa {jurusan} to Jurusan {listMahasiswa}
+}
+relationship ManyToMany {
+	PesertaSeminar {listSeminar} to Seminar {listPesertaSeminar}
+}
+relationship ManyToOne {
+	PesertaSeminar {mahasiswa} to Mahasiswa {listPesertaSeminar}
+}
+
+relationship OneToOne {
+	Seminar {mahasiswa} to Mahasiswa {seminar}
+}
+
+relationship OneToOne {
+	Seminar {jadwalSeminar} to JadwalSeminar {seminar}
+}
+
+relationship ManyToOne {
+	JadwalSeminar {sesi} to  Sesi {listJadwalSeminar}
+}
+
+relationship ManyToOne {
+	JadwalSeminar {ruang} to Ruang {listJadwalSeminar}
+}
+
+// configuration
+dto * with mapstruct
+service * with serviceImpl
+paginate * with pager

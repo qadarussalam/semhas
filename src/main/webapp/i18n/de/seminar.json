@@ -1,0 +1,32 @@
+{
+    "semhasApp": {
+        "seminar" : {
+            "home": {
+                "title": "Seminars",
+                "createLabel": "Seminar erstellen",
+                "createOrEditLabel": "Seminar erstellen oder bearbeiten"
+            },
+            "created": "Seminar erstellt mit ID {{ param }}",
+            "updated": "Seminar aktualisiert mit ID {{ param }}",
+            "deleted": "Seminar gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Seminar {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Seminar"
+            },
+            "judul": "Judul",
+            "abstrak": "Abstrak",
+            "fileAccSeminar": "File Acc Seminar",
+            "ruangan": "Ruangan",
+            "jamMulai": "Jam Mulai",
+            "jamSelesai": "Jam Selesai",
+            "status": "Status",
+            "mahasiswa": "Mahasiswa",
+            "jadwalSeminar": "Jadwal Seminar",
+            "dosenPertama": "Dosen Pertama",
+            "dosenKedua": "Dosen Kedua",
+            "listPesertaSeminar": "List Peserta Seminar"
+        }
+    }
+}

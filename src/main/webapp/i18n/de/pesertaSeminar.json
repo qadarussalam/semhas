@@ -1,0 +1,23 @@
+{
+    "semhasApp": {
+        "pesertaSeminar" : {
+            "home": {
+                "title": "Peserta Seminars",
+                "createLabel": "Peserta Seminar erstellen",
+                "createOrEditLabel": "Peserta Seminar erstellen oder bearbeiten"
+            },
+            "created": "Peserta Seminar erstellt mit ID {{ param }}",
+            "updated": "Peserta Seminar aktualisiert mit ID {{ param }}",
+            "deleted": "Peserta Seminar gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Peserta Seminar {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Peserta Seminar"
+            },
+            "absensi": "Absensi",
+            "mahasiswa": "Mahasiswa",
+            "listSeminar": "List Seminar"
+        }
+    }
+}

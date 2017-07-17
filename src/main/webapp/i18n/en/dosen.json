@@ -1,0 +1,24 @@
+{
+    "semhasApp": {
+        "dosen" : {
+            "home": {
+                "title": "Dosens",
+                "createLabel": "Create a new Dosen",
+                "createOrEditLabel": "Create or edit a Dosen"
+            },
+            "created": "A new Dosen is created with identifier {{ param }}",
+            "updated": "A Dosen is updated with identifier {{ param }}",
+            "deleted": "A Dosen is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Dosen {{ id }}?"
+            },
+            "detail": {
+                "title": "Dosen"
+            },
+            "nama": "Nama",
+            "nip": "Nip",
+            "email": "Email",
+            "nomorTelepon": "Nomor Telepon"
+        }
+    }
+}

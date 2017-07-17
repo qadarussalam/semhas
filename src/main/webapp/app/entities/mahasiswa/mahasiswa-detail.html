@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="semhasApp.mahasiswa.detail.title">Mahasiswa</span> {{vm.mahasiswa.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="semhasApp.mahasiswa.nama">Nama</span></dt>
+        <dd>
+            <span>{{vm.mahasiswa.nama}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.nim">Nim</span></dt>
+        <dd>
+            <span>{{vm.mahasiswa.nim}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.semester">Semester</span></dt>
+        <dd>
+            <span>{{vm.mahasiswa.semester}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.email">Email</span></dt>
+        <dd>
+            <span>{{vm.mahasiswa.email}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.nomorTelepon">Nomor Telepon</span></dt>
+        <dd>
+            <span>{{vm.mahasiswa.nomorTelepon}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.foto">Foto</span></dt>
+        <dd>
+            <div ng-if="vm.mahasiswa.foto">
+                <a ng-click="vm.openFile(vm.mahasiswa.fotoContentType, vm.mahasiswa.foto)">
+                    <img data-ng-src="{{'data:' + vm.mahasiswa.fotoContentType + ';base64,' + vm.mahasiswa.foto}}" style="max-width: 100%;" alt="mahasiswa image"/>
+                </a>
+                {{vm.mahasiswa.fotoContentType}}, {{vm.byteSize(vm.mahasiswa.foto)}}
+            </div>
+        </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.jurusan">Jurusan</span></dt>
+        <dd>
+            <a ui-sref="jurusan-detail({id:vm.mahasiswa.jurusanId})">{{vm.mahasiswa.jurusanId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="mahasiswa-detail.edit({id:vm.mahasiswa.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

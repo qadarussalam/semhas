@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="semhasApp.jadwalSeminar.detail.title">Jadwal Seminar</span> {{vm.jadwalSeminar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="semhasApp.jadwalSeminar.tanggal">Tanggal</span></dt>
+        <dd>
+            <span>{{vm.jadwalSeminar.tanggal | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.jadwalSeminar.tersedia">Tersedia</span></dt>
+        <dd>
+            <span>{{vm.jadwalSeminar.tersedia}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.jadwalSeminar.sesi">Sesi</span></dt>
+        <dd>
+            <a ui-sref="sesi-detail({id:vm.jadwalSeminar.sesiId})">{{vm.jadwalSeminar.sesiId}}</a>
+        </dd>
+        <dt><span data-translate="semhasApp.jadwalSeminar.ruang">Ruang</span></dt>
+        <dd>
+            <a ui-sref="ruang-detail({id:vm.jadwalSeminar.ruangId})">{{vm.jadwalSeminar.ruangId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="jadwal-seminar-detail.edit({id:vm.jadwalSeminar.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

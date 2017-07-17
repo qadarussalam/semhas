@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sesi",
+            "otherEntityName": "sesi",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "ruang",
+            "otherEntityName": "ruang",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "seminar",
+            "otherEntityName": "seminar",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "jadwalSeminar"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tanggal",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "tersedia",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170717232320",
+    "entityTableName": "jadwal_seminar",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

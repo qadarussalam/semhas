@@ -1,0 +1,68 @@
+
+<div>
+    <h2><span data-translate="semhasApp.seminar.detail.title">Seminar</span> {{vm.seminar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="semhasApp.seminar.judul">Judul</span></dt>
+        <dd>
+            <span>{{vm.seminar.judul}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.abstrak">Abstrak</span></dt>
+        <dd>
+            <span>{{vm.seminar.abstrak}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.fileAccSeminar">File Acc Seminar</span></dt>
+        <dd>
+            <div ng-if="vm.seminar.fileAccSeminar">
+                <a ng-click="vm.openFile(vm.seminar.fileAccSeminarContentType, vm.seminar.fileAccSeminar)">
+                    <img data-ng-src="{{'data:' + vm.seminar.fileAccSeminarContentType + ';base64,' + vm.seminar.fileAccSeminar}}" style="max-width: 100%;" alt="seminar image"/>
+                </a>
+                {{vm.seminar.fileAccSeminarContentType}}, {{vm.byteSize(vm.seminar.fileAccSeminar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.ruangan">Ruangan</span></dt>
+        <dd>
+            <span>{{vm.seminar.ruangan}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.jamMulai">Jam Mulai</span></dt>
+        <dd>
+            <span>{{vm.seminar.jamMulai | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.jamSelesai">Jam Selesai</span></dt>
+        <dd>
+            <span>{{vm.seminar.jamSelesai | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'semhasApp.StatusSeminar.' + vm.seminar.status}}">{{vm.seminar.status}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.mahasiswa">Mahasiswa</span></dt>
+        <dd>
+            <a ui-sref="mahasiswa-detail({id:vm.seminar.mahasiswaId})">{{vm.seminar.mahasiswaId}}</a>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.jadwalSeminar">Jadwal Seminar</span></dt>
+        <dd>
+            <a ui-sref="jadwal-seminar-detail({id:vm.seminar.jadwalSeminarId})">{{vm.seminar.jadwalSeminarId}}</a>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.dosenPertama">Dosen Pertama</span></dt>
+        <dd>
+            <a ui-sref="dosen-detail({id:vm.seminar.dosenPertamaId})">{{vm.seminar.dosenPertamaId}}</a>
+        </dd>
+        <dt><span data-translate="semhasApp.seminar.dosenKedua">Dosen Kedua</span></dt>
+        <dd>
+            <a ui-sref="dosen-detail({id:vm.seminar.dosenKeduaId})">{{vm.seminar.dosenKeduaId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="seminar-detail.edit({id:vm.seminar.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

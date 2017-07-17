@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "listJadwalSeminar",
+            "otherEntityName": "jadwalSeminar",
+            "otherEntityRelationshipName": "sesi"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "urutan",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "jamMulai",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "jamSelesai",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170717232322",
+    "entityTableName": "sesi",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

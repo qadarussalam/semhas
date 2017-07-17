@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "mahasiswa",
+            "otherEntityName": "mahasiswa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "listPesertaSeminar",
+            "relationshipName": "listSeminar",
+            "otherEntityName": "seminar",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "absensi",
+            "fieldType": "AbsensiSeminar",
+            "fieldValues": "HADIR,ABSEN"
+        }
+    ],
+    "changelogDate": "20170717232318",
+    "entityTableName": "peserta_seminar",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

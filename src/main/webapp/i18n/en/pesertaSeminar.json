@@ -1,0 +1,23 @@
+{
+    "semhasApp": {
+        "pesertaSeminar" : {
+            "home": {
+                "title": "Peserta Seminars",
+                "createLabel": "Create a new Peserta Seminar",
+                "createOrEditLabel": "Create or edit a Peserta Seminar"
+            },
+            "created": "A new Peserta Seminar is created with identifier {{ param }}",
+            "updated": "A Peserta Seminar is updated with identifier {{ param }}",
+            "deleted": "A Peserta Seminar is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Peserta Seminar {{ id }}?"
+            },
+            "detail": {
+                "title": "Peserta Seminar"
+            },
+            "absensi": "Absensi",
+            "mahasiswa": "Mahasiswa",
+            "listSeminar": "List Seminar"
+        }
+    }
+}

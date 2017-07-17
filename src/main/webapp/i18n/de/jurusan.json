@@ -1,0 +1,22 @@
+{
+    "semhasApp": {
+        "jurusan" : {
+            "home": {
+                "title": "Jurusans",
+                "createLabel": "Jurusan erstellen",
+                "createOrEditLabel": "Jurusan erstellen oder bearbeiten"
+            },
+            "created": "Jurusan erstellt mit ID {{ param }}",
+            "updated": "Jurusan aktualisiert mit ID {{ param }}",
+            "deleted": "Jurusan gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Jurusan {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Jurusan"
+            },
+            "nama": "Nama",
+            "listMahasiswa": "List Mahasiswa"
+        }
+    }
+}

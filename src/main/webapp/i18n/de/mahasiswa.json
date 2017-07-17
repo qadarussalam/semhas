@@ -1,0 +1,29 @@
+{
+    "semhasApp": {
+        "mahasiswa" : {
+            "home": {
+                "title": "Mahasiswas",
+                "createLabel": "Mahasiswa erstellen",
+                "createOrEditLabel": "Mahasiswa erstellen oder bearbeiten"
+            },
+            "created": "Mahasiswa erstellt mit ID {{ param }}",
+            "updated": "Mahasiswa aktualisiert mit ID {{ param }}",
+            "deleted": "Mahasiswa gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Mahasiswa {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Mahasiswa"
+            },
+            "nama": "Nama",
+            "nim": "Nim",
+            "semester": "Semester",
+            "email": "Email",
+            "nomorTelepon": "Nomor Telepon",
+            "foto": "Foto",
+            "jurusan": "Jurusan",
+            "seminar": "Seminar",
+            "listPesertaSeminar": "List Peserta Seminar"
+        }
+    }
+}

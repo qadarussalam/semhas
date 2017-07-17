@@ -1,0 +1,87 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mahasiswa",
+            "otherEntityName": "mahasiswa",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "seminar"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "jadwalSeminar",
+            "otherEntityName": "jadwalSeminar",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "seminar"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dosenPertama",
+            "otherEntityName": "dosen",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "dosenKedua",
+            "otherEntityName": "dosen",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "listPesertaSeminar",
+            "otherEntityName": "pesertaSeminar",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "listSeminar"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "judul",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "abstrak",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fileAccSeminar",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "ruangan",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "jamMulai",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "jamSelesai",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusSeminar",
+            "fieldValues": "MENUNGGU_PERSETUJUAN,DISETUJUI,BATAL"
+        }
+    ],
+    "changelogDate": "20170717232319",
+    "entityTableName": "seminar",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

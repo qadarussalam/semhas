@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "listMahasiswa",
+            "otherEntityName": "mahasiswa",
+            "otherEntityRelationshipName": "jurusan"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nama",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 5
+        }
+    ],
+    "changelogDate": "20170717232315",
+    "entityTableName": "jurusan",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

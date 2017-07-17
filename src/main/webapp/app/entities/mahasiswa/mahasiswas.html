@@ -1,0 +1,79 @@
+<div>
+    <h2 data-translate="semhasApp.mahasiswa.home.title">Mahasiswas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="mahasiswa.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="semhasApp.mahasiswa.home.createLabel">
+                        Create new Mahasiswa
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nama"><span data-translate="semhasApp.mahasiswa.nama">Nama</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nim"><span data-translate="semhasApp.mahasiswa.nim">Nim</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="semester"><span data-translate="semhasApp.mahasiswa.semester">Semester</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="email"><span data-translate="semhasApp.mahasiswa.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nomorTelepon"><span data-translate="semhasApp.mahasiswa.nomorTelepon">Nomor Telepon</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="foto"><span data-translate="semhasApp.mahasiswa.foto">Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="jurusanId"><span data-translate="semhasApp.mahasiswa.jurusan">Jurusan</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mahasiswa in vm.mahasiswas track by mahasiswa.id">
+                    <td><a ui-sref="mahasiswa-detail({id:mahasiswa.id})">{{mahasiswa.id}}</a></td>
+                    <td>{{mahasiswa.nama}}</td>
+                    <td>{{mahasiswa.nim}}</td>
+                    <td>{{mahasiswa.semester}}</td>
+                    <td>{{mahasiswa.email}}</td>
+                    <td>{{mahasiswa.nomorTelepon}}</td>
+                    <td>
+                        <a ng-if="mahasiswa.foto" ng-click="vm.openFile(mahasiswa.fotoContentType, mahasiswa.foto)">
+                            <img data-ng-src="{{'data:' + mahasiswa.fotoContentType + ';base64,' + mahasiswa.foto}}" style="max-height: 30px;" alt="mahasiswa image"/>
+                        </a>
+                        <span ng-if="mahasiswa.foto">{{mahasiswa.fotoContentType}}, {{vm.byteSize(mahasiswa.foto)}}</span>
+                    </td>
+                    <td>
+                        <a ui-sref="jurusan-detail({id:mahasiswa.jurusanId})">{{mahasiswa.jurusanId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="mahasiswa-detail({id:mahasiswa.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="mahasiswa.edit({id:mahasiswa.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="mahasiswa.delete({id:mahasiswa.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

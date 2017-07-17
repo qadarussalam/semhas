@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "jurusan",
+            "otherEntityName": "jurusan",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "seminar",
+            "otherEntityName": "seminar",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "mahasiswa"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "listPesertaSeminar",
+            "otherEntityName": "pesertaSeminar",
+            "otherEntityRelationshipName": "mahasiswa"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nama",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nim",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semester",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nomorTelepon",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170717232316",
+    "entityTableName": "mahasiswa",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PesertaSeminar.
+    -->
+    <changeSet id="20170717232318-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mahasiswa_id"
+                                 baseTableName="peserta_seminar"
+                                 constraintName="fk_peserta_seminar_mahasiswa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mahasiswa"/>
+
+        <addForeignKeyConstraint baseColumnNames="peserta_seminars_id"
+                                 baseTableName="peserta_seminar_list_seminar"
+                                 constraintName="fk_peserta_seminar_list_seminar_peserta_seminars_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="peserta_seminar"/>
+        <addForeignKeyConstraint baseColumnNames="list_seminars_id"
+                                 baseTableName="peserta_seminar_list_seminar"
+                                 constraintName="fk_peserta_seminar_list_seminar_list_seminars_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seminar"/>
+        
+    </changeSet>
+</databaseChangeLog>

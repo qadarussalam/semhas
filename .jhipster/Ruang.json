@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "listJadwalSeminar",
+            "otherEntityName": "jadwalSeminar",
+            "otherEntityRelationshipName": "ruang"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nama",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kapasitas",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170717232321",
+    "entityTableName": "ruang",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

@@ -1,0 +1,10 @@
+{
+    "semhasApp": {
+        "StatusSeminar" : {
+            "null": "",
+            "MENUNGGU_PERSETUJUAN": "MENUNGGU_PERSETUJUAN",
+            "DISETUJUI": "DISETUJUI",
+            "BATAL": "BATAL"
+        }
+    }
+}

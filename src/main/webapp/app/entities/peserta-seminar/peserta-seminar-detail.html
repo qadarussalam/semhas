@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span data-translate="semhasApp.pesertaSeminar.detail.title">Peserta Seminar</span> {{vm.pesertaSeminar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="semhasApp.pesertaSeminar.absensi">Absensi</span></dt>
+        <dd>
+            <span data-translate="{{'semhasApp.AbsensiSeminar.' + vm.pesertaSeminar.absensi}}">{{vm.pesertaSeminar.absensi}}</span>
+        </dd>
+        <dt><span data-translate="semhasApp.pesertaSeminar.mahasiswa">Mahasiswa</span></dt>
+        <dd>
+            <a ui-sref="mahasiswa-detail({id:vm.pesertaSeminar.mahasiswaId})">{{vm.pesertaSeminar.mahasiswaId}}</a>
+        </dd>
+        <dt><span data-translate="semhasApp.pesertaSeminar.listSeminar">List Seminar</span></dt>
+        <dd>
+            <span ng-repeat="listSeminar in vm.pesertaSeminar.listSeminars">
+                <a ui-sref="seminar-detail({id: listSeminar.id})">{{listSeminar.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="peserta-seminar-detail.edit({id:vm.pesertaSeminar.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
