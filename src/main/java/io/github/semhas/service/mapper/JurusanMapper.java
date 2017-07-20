@@ -8,9 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Jurusan and its DTO JurusanDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, })
 public interface JurusanMapper extends EntityMapper <JurusanDTO, Jurusan> {
-    
+
+    @Mapping(source = "pic.id", target = "picId")
+    @Mapping(source = "pic.login", target = "picLogin")
+    JurusanDTO toDto(Jurusan jurusan); 
+
+    @Mapping(source = "picId", target = "pic")
     @Mapping(target = "listMahasiswas", ignore = true)
     Jurusan toEntity(JurusanDTO jurusanDTO); 
     default Jurusan fromId(Long id) {

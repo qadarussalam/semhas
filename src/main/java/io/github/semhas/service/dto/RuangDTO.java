@@ -17,6 +17,10 @@ public class RuangDTO implements Serializable {
 
     private Integer kapasitas;
 
+    private Long picId;
+
+    private String picLogin;
+
     public Long getId() {
         return id;
     }
@@ -39,6 +43,22 @@ public class RuangDTO implements Serializable {
 
     public void setKapasitas(Integer kapasitas) {
         this.kapasitas = kapasitas;
+    }
+
+    public Long getPicId() {
+        return picId;
+    }
+
+    public void setPicId(Long userId) {
+        this.picId = userId;
+    }
+
+    public String getPicLogin() {
+        return picLogin;
+    }
+
+    public void setPicLogin(String userLogin) {
+        this.picLogin = userLogin;
     }
 
     @Override

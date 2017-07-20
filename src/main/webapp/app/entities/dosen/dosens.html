@@ -23,6 +23,7 @@
                     <th jh-sort-by="nip"><span data-translate="semhasApp.dosen.nip">Nip</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="email"><span data-translate="semhasApp.dosen.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nomorTelepon"><span data-translate="semhasApp.dosen.nomorTelepon">Nomor Telepon</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userLogin"><span data-translate="semhasApp.dosen.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,6 +34,9 @@
                     <td>{{dosen.nip}}</td>
                     <td>{{dosen.email}}</td>
                     <td>{{dosen.nomorTelepon}}</td>
+                    <td>
+                        {{dosen.userLogin}}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

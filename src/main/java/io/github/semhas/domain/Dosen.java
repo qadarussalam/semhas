@@ -38,6 +38,10 @@ public class Dosen implements Serializable {
     @Column(name = "nomor_telepon", nullable = false)
     private String nomorTelepon;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -96,6 +100,19 @@ public class Dosen implements Serializable {
 
     public void setNomorTelepon(String nomorTelepon) {
         this.nomorTelepon = nomorTelepon;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Dosen user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

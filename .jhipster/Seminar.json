@@ -5,29 +5,29 @@
             "relationshipType": "one-to-one",
             "relationshipName": "mahasiswa",
             "otherEntityName": "mahasiswa",
-            "otherEntityField": "id",
+            "otherEntityField": "nama",
             "ownerSide": true,
-            "otherEntityRelationshipName": "seminar"
+            "otherEntityRelationshipName": "seminar(judul)"
         },
         {
             "relationshipType": "one-to-one",
             "relationshipName": "jadwalSeminar",
             "otherEntityName": "jadwalSeminar",
-            "otherEntityField": "id",
+            "otherEntityField": "tanggal",
             "ownerSide": true,
-            "otherEntityRelationshipName": "seminar"
+            "otherEntityRelationshipName": "seminar(judul)"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "dosenPertama",
             "otherEntityName": "dosen",
-            "otherEntityField": "id"
+            "otherEntityField": "nama"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "dosenKedua",
             "otherEntityName": "dosen",
-            "otherEntityField": "id"
+            "otherEntityField": "nama"
         },
         {
             "relationshipType": "many-to-many",

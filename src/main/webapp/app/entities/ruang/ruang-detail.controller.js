@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('RuangDetailController', RuangDetailController);
 
-    RuangDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Ruang', 'JadwalSeminar'];
+    RuangDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Ruang', 'User', 'JadwalSeminar'];
 
-    function RuangDetailController($scope, $rootScope, $stateParams, previousState, entity, Ruang, JadwalSeminar) {
+    function RuangDetailController($scope, $rootScope, $stateParams, previousState, entity, Ruang, User, JadwalSeminar) {
         var vm = this;
 
         vm.ruang = entity;

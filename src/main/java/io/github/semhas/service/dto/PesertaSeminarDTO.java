@@ -18,6 +18,8 @@ public class PesertaSeminarDTO implements Serializable {
 
     private Long mahasiswaId;
 
+    private String mahasiswaNim;
+
     private Set<SeminarDTO> listSeminars = new HashSet<>();
 
     public Long getId() {
@@ -42,6 +44,14 @@ public class PesertaSeminarDTO implements Serializable {
 
     public void setMahasiswaId(Long mahasiswaId) {
         this.mahasiswaId = mahasiswaId;
+    }
+
+    public String getMahasiswaNim() {
+        return mahasiswaNim;
+    }
+
+    public void setMahasiswaNim(String mahasiswaNim) {
+        this.mahasiswaNim = mahasiswaNim;
     }
 
     public Set<SeminarDTO> getListSeminars() {

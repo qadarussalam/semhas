@@ -5,14 +5,15 @@
         .module('semhasApp')
         .controller('DosenDialogController', DosenDialogController);
 
-    DosenDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Dosen'];
+    DosenDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Dosen', 'User'];
 
-    function DosenDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Dosen) {
+    function DosenDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Dosen, User) {
         var vm = this;
 
         vm.dosen = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.users = User.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

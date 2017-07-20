@@ -20,7 +20,11 @@ public class JadwalSeminarDTO implements Serializable {
 
     private Long sesiId;
 
+    private String sesiUrutan;
+
     private Long ruangId;
+
+    private String ruangNama;
 
     public Long getId() {
         return id;
@@ -54,12 +58,28 @@ public class JadwalSeminarDTO implements Serializable {
         this.sesiId = sesiId;
     }
 
+    public String getSesiUrutan() {
+        return sesiUrutan;
+    }
+
+    public void setSesiUrutan(String sesiUrutan) {
+        this.sesiUrutan = sesiUrutan;
+    }
+
     public Long getRuangId() {
         return ruangId;
     }
 
     public void setRuangId(Long ruangId) {
         this.ruangId = ruangId;
+    }
+
+    public String getRuangNama() {
+        return ruangNama;
+    }
+
+    public void setRuangNama(String ruangNama) {
+        this.ruangNama = ruangNama;
     }
 
     @Override

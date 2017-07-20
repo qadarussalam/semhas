@@ -20,7 +20,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="absensi"><span data-translate="semhasApp.pesertaSeminar.absensi">Absensi</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="mahasiswaId"><span data-translate="semhasApp.pesertaSeminar.mahasiswa">Mahasiswa</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mahasiswaNim"><span data-translate="semhasApp.pesertaSeminar.mahasiswa">Mahasiswa</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                     <td><a ui-sref="peserta-seminar-detail({id:pesertaSeminar.id})">{{pesertaSeminar.id}}</a></td>
                     <td data-translate="{{'semhasApp.AbsensiSeminar.' + pesertaSeminar.absensi}}">{{pesertaSeminar.absensi}}</td>
                     <td>
-                        <a ui-sref="mahasiswa-detail({id:pesertaSeminar.mahasiswaId})">{{pesertaSeminar.mahasiswaId}}</a>
+                        <a ui-sref="mahasiswa-detail({id:pesertaSeminar.mahasiswaId})">{{pesertaSeminar.mahasiswaNim}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

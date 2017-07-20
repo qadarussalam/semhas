@@ -10,12 +10,12 @@
         </dd>
         <dt><span data-translate="semhasApp.pesertaSeminar.mahasiswa">Mahasiswa</span></dt>
         <dd>
-            <a ui-sref="mahasiswa-detail({id:vm.pesertaSeminar.mahasiswaId})">{{vm.pesertaSeminar.mahasiswaId}}</a>
+            <a ui-sref="mahasiswa-detail({id:vm.pesertaSeminar.mahasiswaId})">{{vm.pesertaSeminar.mahasiswaNim}}</a>
         </dd>
         <dt><span data-translate="semhasApp.pesertaSeminar.listSeminar">List Seminar</span></dt>
         <dd>
             <span ng-repeat="listSeminar in vm.pesertaSeminar.listSeminars">
-                <a ui-sref="seminar-detail({id: listSeminar.id})">{{listSeminar.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="seminar-detail({id: listSeminar.id})">{{listSeminar.judul}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

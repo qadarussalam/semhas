@@ -101,8 +101,14 @@
         </div>
 
         <div class="form-group">
+            <label data-translate="semhasApp.mahasiswa.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.mahasiswa.userId" ng-options="user.id as user.login for user in vm.users"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
             <label data-translate="semhasApp.mahasiswa.jurusan" for="field_jurusan">Jurusan</label>
-            <select class="form-control" id="field_jurusan" name="jurusan" ng-model="vm.mahasiswa.jurusanId" ng-options="jurusan.id as jurusan.id for jurusan in vm.jurusans"            >
+            <select class="form-control" id="field_jurusan" name="jurusan" ng-model="vm.mahasiswa.jurusanId" ng-options="jurusan.id as jurusan.nama for jurusan in vm.jurusans"            >
                 <option value=""></option>
             </select>
         </div>

@@ -8,10 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Dosen and its DTO DosenDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, })
 public interface DosenMapper extends EntityMapper <DosenDTO, Dosen> {
-    
-    
+
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.login", target = "userLogin")
+    DosenDTO toDto(Dosen dosen); 
+
+    @Mapping(source = "userId", target = "user")
+    Dosen toEntity(DosenDTO dosenDTO); 
     default Dosen fromId(Long id) {
         if (id == null) {
             return null;

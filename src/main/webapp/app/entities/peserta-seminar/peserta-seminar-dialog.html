@@ -23,13 +23,13 @@
 
         <div class="form-group">
             <label data-translate="semhasApp.pesertaSeminar.mahasiswa" for="field_mahasiswa">Mahasiswa</label>
-            <select class="form-control" id="field_mahasiswa" name="mahasiswa" ng-model="vm.pesertaSeminar.mahasiswaId" ng-options="mahasiswa.id as mahasiswa.id for mahasiswa in vm.mahasiswas"            >
+            <select class="form-control" id="field_mahasiswa" name="mahasiswa" ng-model="vm.pesertaSeminar.mahasiswaId" ng-options="mahasiswa.id as mahasiswa.nim for mahasiswa in vm.mahasiswas"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="semhasApp.pesertaSeminar.listSeminar" for="field_listSeminar">List Seminar</label>
-            <select class="form-control" id="field_listSeminar" multiple name="listSeminar" ng-model="vm.pesertaSeminar.listSeminars" ng-options="seminar as seminar.id for seminar in vm.seminars track by seminar.id"></select>
+            <select class="form-control" id="field_listSeminar" multiple name="listSeminar" ng-model="vm.pesertaSeminar.listSeminars" ng-options="seminar as seminar.judul for seminar in vm.seminars track by seminar.id"></select>
         </div>
     </div>
     <div class="modal-footer">

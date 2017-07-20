@@ -17,6 +17,7 @@
             },
             "nama": "Nama",
             "kapasitas": "Kapasitas",
+            "pic": "Pic",
             "listJadwalSeminar": "List Jadwal Seminar"
         }
     }

@@ -21,8 +21,8 @@
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tanggal"><span data-translate="semhasApp.jadwalSeminar.tanggal">Tanggal</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tersedia"><span data-translate="semhasApp.jadwalSeminar.tersedia">Tersedia</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="sesiId"><span data-translate="semhasApp.jadwalSeminar.sesi">Sesi</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="ruangId"><span data-translate="semhasApp.jadwalSeminar.ruang">Ruang</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sesiUrutan"><span data-translate="semhasApp.jadwalSeminar.sesi">Sesi</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="ruangNama"><span data-translate="semhasApp.jadwalSeminar.ruang">Ruang</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,10 +32,10 @@
                     <td>{{jadwalSeminar.tanggal | date:'medium'}}</td>
                     <td>{{jadwalSeminar.tersedia}}</td>
                     <td>
-                        <a ui-sref="sesi-detail({id:jadwalSeminar.sesiId})">{{jadwalSeminar.sesiId}}</a>
+                        <a ui-sref="sesi-detail({id:jadwalSeminar.sesiId})">{{jadwalSeminar.sesiUrutan}}</a>
                     </td>
                     <td>
-                        <a ui-sref="ruang-detail({id:jadwalSeminar.ruangId})">{{jadwalSeminar.ruangId}}</a>
+                        <a ui-sref="ruang-detail({id:jadwalSeminar.ruangId})">{{jadwalSeminar.ruangNama}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

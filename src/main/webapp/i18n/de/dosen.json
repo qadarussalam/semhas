@@ -18,7 +18,8 @@
             "nama": "Nama",
             "nip": "Nip",
             "email": "Email",
-            "nomorTelepon": "Nomor Telepon"
+            "nomorTelepon": "Nomor Telepon",
+            "user": "User"
         }
     }
 }

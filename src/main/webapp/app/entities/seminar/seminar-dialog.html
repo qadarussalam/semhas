@@ -101,25 +101,25 @@
 
         <div class="form-group">
             <label data-translate="semhasApp.seminar.mahasiswa" for="field_mahasiswa">Mahasiswa</label>
-            <select class="form-control" id="field_mahasiswa" name="mahasiswa" ng-model="vm.seminar.mahasiswaId" ng-options="mahasiswa.id as mahasiswa.id for mahasiswa in vm.mahasiswas | orderBy:'id'">
+            <select class="form-control" id="field_mahasiswa" name="mahasiswa" ng-model="vm.seminar.mahasiswaId" ng-options="mahasiswa.id as mahasiswa.nama for mahasiswa in vm.mahasiswas | orderBy:'id'">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="semhasApp.seminar.jadwalSeminar" for="field_jadwalSeminar">Jadwal Seminar</label>
-            <select class="form-control" id="field_jadwalSeminar" name="jadwalSeminar" ng-model="vm.seminar.jadwalSeminarId" ng-options="jadwalSeminar.id as jadwalSeminar.id for jadwalSeminar in vm.jadwalseminars | orderBy:'id'">
+            <select class="form-control" id="field_jadwalSeminar" name="jadwalSeminar" ng-model="vm.seminar.jadwalSeminarId" ng-options="jadwalSeminar.id as jadwalSeminar.tanggal for jadwalSeminar in vm.jadwalseminars | orderBy:'id'">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="semhasApp.seminar.dosenPertama" for="field_dosenPertama">Dosen Pertama</label>
-            <select class="form-control" id="field_dosenPertama" name="dosenPertama" ng-model="vm.seminar.dosenPertamaId" ng-options="dosen.id as dosen.id for dosen in vm.dosens"            >
+            <select class="form-control" id="field_dosenPertama" name="dosenPertama" ng-model="vm.seminar.dosenPertamaId" ng-options="dosen.id as dosen.nama for dosen in vm.dosens"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="semhasApp.seminar.dosenKedua" for="field_dosenKedua">Dosen Kedua</label>
-            <select class="form-control" id="field_dosenKedua" name="dosenKedua" ng-model="vm.seminar.dosenKeduaId" ng-options="dosen.id as dosen.id for dosen in vm.dosens"            >
+            <select class="form-control" id="field_dosenKedua" name="dosenKedua" ng-model="vm.seminar.dosenKeduaId" ng-options="dosen.id as dosen.nama for dosen in vm.dosens"            >
                 <option value=""></option>
             </select>
         </div>

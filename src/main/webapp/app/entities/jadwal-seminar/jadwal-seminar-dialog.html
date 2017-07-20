@@ -31,13 +31,13 @@
 
         <div class="form-group">
             <label data-translate="semhasApp.jadwalSeminar.sesi" for="field_sesi">Sesi</label>
-            <select class="form-control" id="field_sesi" name="sesi" ng-model="vm.jadwalSeminar.sesiId" ng-options="sesi.id as sesi.id for sesi in vm.sesis"            >
+            <select class="form-control" id="field_sesi" name="sesi" ng-model="vm.jadwalSeminar.sesiId" ng-options="sesi.id as sesi.urutan for sesi in vm.sesis"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="semhasApp.jadwalSeminar.ruang" for="field_ruang">Ruang</label>
-            <select class="form-control" id="field_ruang" name="ruang" ng-model="vm.jadwalSeminar.ruangId" ng-options="ruang.id as ruang.id for ruang in vm.ruangs"            >
+            <select class="form-control" id="field_ruang" name="ruang" ng-model="vm.jadwalSeminar.ruangId" ng-options="ruang.id as ruang.nama for ruang in vm.ruangs"            >
                 <option value=""></option>
             </select>
         </div>

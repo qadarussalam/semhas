@@ -30,6 +30,10 @@ public class Jurusan implements Serializable {
     @Column(name = "nama", nullable = false)
     private String nama;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User pic;
+
     @OneToMany(mappedBy = "jurusan")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -54,6 +58,19 @@ public class Jurusan implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public User getPic() {
+        return pic;
+    }
+
+    public Jurusan pic(User user) {
+        this.pic = user;
+        return this;
+    }
+
+    public void setPic(User user) {
+        this.pic = user;
     }
 
     public Set<Mahasiswa> getListMahasiswas() {

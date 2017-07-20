@@ -26,10 +26,10 @@
                     <th jh-sort-by="jamMulai"><span data-translate="semhasApp.seminar.jamMulai">Jam Mulai</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="jamSelesai"><span data-translate="semhasApp.seminar.jamSelesai">Jam Selesai</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="status"><span data-translate="semhasApp.seminar.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="mahasiswaId"><span data-translate="semhasApp.seminar.mahasiswa">Mahasiswa</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="jadwalSeminarId"><span data-translate="semhasApp.seminar.jadwalSeminar">Jadwal Seminar</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dosenPertamaId"><span data-translate="semhasApp.seminar.dosenPertama">Dosen Pertama</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="dosenKeduaId"><span data-translate="semhasApp.seminar.dosenKedua">Dosen Kedua</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mahasiswaNama"><span data-translate="semhasApp.seminar.mahasiswa">Mahasiswa</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="jadwalSeminarTanggal"><span data-translate="semhasApp.seminar.jadwalSeminar">Jadwal Seminar</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dosenPertamaNama"><span data-translate="semhasApp.seminar.dosenPertama">Dosen Pertama</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dosenKeduaNama"><span data-translate="semhasApp.seminar.dosenKedua">Dosen Kedua</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,16 +49,16 @@
                     <td>{{seminar.jamSelesai | date:'medium'}}</td>
                     <td data-translate="{{'semhasApp.StatusSeminar.' + seminar.status}}">{{seminar.status}}</td>
                     <td>
-                        <a ui-sref="mahasiswa-detail({id:seminar.mahasiswaId})">{{seminar.mahasiswaId}}</a>
+                        <a ui-sref="mahasiswa-detail({id:seminar.mahasiswaId})">{{seminar.mahasiswaNama}}</a>
                     </td>
                     <td>
-                        <a ui-sref="jadwal-seminar-detail({id:seminar.jadwalSeminarId})">{{seminar.jadwalSeminarId}}</a>
+                        <a ui-sref="jadwal-seminar-detail({id:seminar.jadwalSeminarId})">{{seminar.jadwalSeminarTanggal}}</a>
                     </td>
                     <td>
-                        <a ui-sref="dosen-detail({id:seminar.dosenPertamaId})">{{seminar.dosenPertamaId}}</a>
+                        <a ui-sref="dosen-detail({id:seminar.dosenPertamaId})">{{seminar.dosenPertamaNama}}</a>
                     </td>
                     <td>
-                        <a ui-sref="dosen-detail({id:seminar.dosenKeduaId})">{{seminar.dosenKeduaId}}</a>
+                        <a ui-sref="dosen-detail({id:seminar.dosenKeduaId})">{{seminar.dosenKeduaNama}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

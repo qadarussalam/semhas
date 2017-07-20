@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('JurusanDetailController', JurusanDetailController);
 
-    JurusanDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Jurusan', 'Mahasiswa'];
+    JurusanDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Jurusan', 'User', 'Mahasiswa'];
 
-    function JurusanDetailController($scope, $rootScope, $stateParams, previousState, entity, Jurusan, Mahasiswa) {
+    function JurusanDetailController($scope, $rootScope, $stateParams, previousState, entity, Jurusan, User, Mahasiswa) {
         var vm = this;
 
         vm.jurusan = entity;

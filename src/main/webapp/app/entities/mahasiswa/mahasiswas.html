@@ -25,7 +25,8 @@
                     <th jh-sort-by="email"><span data-translate="semhasApp.mahasiswa.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nomorTelepon"><span data-translate="semhasApp.mahasiswa.nomorTelepon">Nomor Telepon</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="foto"><span data-translate="semhasApp.mahasiswa.foto">Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="jurusanId"><span data-translate="semhasApp.mahasiswa.jurusan">Jurusan</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userLogin"><span data-translate="semhasApp.mahasiswa.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="jurusanNama"><span data-translate="semhasApp.mahasiswa.jurusan">Jurusan</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,7 +45,10 @@
                         <span ng-if="mahasiswa.foto">{{mahasiswa.fotoContentType}}, {{vm.byteSize(mahasiswa.foto)}}</span>
                     </td>
                     <td>
-                        <a ui-sref="jurusan-detail({id:mahasiswa.jurusanId})">{{mahasiswa.jurusanId}}</a>
+                        {{mahasiswa.userLogin}}
+                    </td>
+                    <td>
+                        <a ui-sref="jurusan-detail({id:mahasiswa.jurusanId})">{{mahasiswa.jurusanNama}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

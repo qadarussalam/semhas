@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('MahasiswaDialogController', MahasiswaDialogController);
 
-    MahasiswaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Mahasiswa', 'Jurusan', 'Seminar', 'PesertaSeminar'];
+    MahasiswaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'DataUtils', 'entity', 'Mahasiswa', 'User', 'Jurusan', 'Seminar', 'PesertaSeminar'];
 
-    function MahasiswaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Mahasiswa, Jurusan, Seminar, PesertaSeminar) {
+    function MahasiswaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, DataUtils, entity, Mahasiswa, User, Jurusan, Seminar, PesertaSeminar) {
         var vm = this;
 
         vm.mahasiswa = entity;
@@ -15,6 +15,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
+        vm.users = User.query();
         vm.jurusans = Jurusan.query();
         vm.seminars = Seminar.query();
         vm.pesertaseminars = PesertaSeminar.query();

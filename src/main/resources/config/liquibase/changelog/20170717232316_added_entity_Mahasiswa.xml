@@ -48,7 +48,9 @@
             <column name="foto_content_type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-
+            <column name="user_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
             <column name="jurusan_id" type="bigint">
                 <constraints nullable="true" />
             </column>

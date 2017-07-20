@@ -17,7 +17,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.mahasiswas = Mahasiswa.query({filter: 'seminar-is-null'});
+        vm.mahasiswas = Mahasiswa.query({filter: 'seminar(judul)-is-null'});
         $q.all([vm.seminar.$promise, vm.mahasiswas.$promise]).then(function() {
             if (!vm.seminar.mahasiswaId) {
                 return $q.reject();
@@ -26,7 +26,7 @@
         }).then(function(mahasiswa) {
             vm.mahasiswas.push(mahasiswa);
         });
-        vm.jadwalseminars = JadwalSeminar.query({filter: 'seminar-is-null'});
+        vm.jadwalseminars = JadwalSeminar.query({filter: 'seminar(judul)-is-null'});
         $q.all([vm.seminar.$promise, vm.jadwalseminars.$promise]).then(function() {
             if (!vm.seminar.jadwalSeminarId) {
                 return $q.reject();

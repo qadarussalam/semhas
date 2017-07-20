@@ -18,6 +18,10 @@ public class JurusanDTO implements Serializable {
     @Size(min = 5)
     private String nama;
 
+    private Long picId;
+
+    private String picLogin;
+
     public Long getId() {
         return id;
     }
@@ -32,6 +36,22 @@ public class JurusanDTO implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public Long getPicId() {
+        return picId;
+    }
+
+    public void setPicId(Long userId) {
+        this.picId = userId;
+    }
+
+    public String getPicLogin() {
+        return picLogin;
+    }
+
+    public void setPicLogin(String userLogin) {
+        this.picLogin = userLogin;
     }
 
     @Override

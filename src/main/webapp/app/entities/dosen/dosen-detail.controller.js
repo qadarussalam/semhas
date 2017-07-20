@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('DosenDetailController', DosenDetailController);
 
-    DosenDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Dosen'];
+    DosenDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Dosen', 'User'];
 
-    function DosenDetailController($scope, $rootScope, $stateParams, previousState, entity, Dosen) {
+    function DosenDetailController($scope, $rootScope, $stateParams, previousState, entity, Dosen, User) {
         var vm = this;
 
         vm.dosen = entity;

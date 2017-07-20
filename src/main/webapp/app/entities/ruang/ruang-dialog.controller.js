@@ -5,14 +5,15 @@
         .module('semhasApp')
         .controller('RuangDialogController', RuangDialogController);
 
-    RuangDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Ruang', 'JadwalSeminar'];
+    RuangDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Ruang', 'User', 'JadwalSeminar'];
 
-    function RuangDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Ruang, JadwalSeminar) {
+    function RuangDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Ruang, User, JadwalSeminar) {
         var vm = this;
 
         vm.ruang = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.users = User.query();
         vm.jadwalseminars = JadwalSeminar.query();
 
         $timeout(function (){

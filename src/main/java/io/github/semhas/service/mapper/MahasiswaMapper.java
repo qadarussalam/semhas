@@ -8,11 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Mahasiswa and its DTO MahasiswaDTO.
  */
-@Mapper(componentModel = "spring", uses = {JurusanMapper.class, })
+@Mapper(componentModel = "spring", uses = {UserMapper.class, JurusanMapper.class, })
 public interface MahasiswaMapper extends EntityMapper <MahasiswaDTO, Mahasiswa> {
 
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "user.login", target = "userLogin")
+
     @Mapping(source = "jurusan.id", target = "jurusanId")
+    @Mapping(source = "jurusan.nama", target = "jurusanNama")
     MahasiswaDTO toDto(Mahasiswa mahasiswa); 
+
+    @Mapping(source = "userId", target = "user")
 
     @Mapping(source = "jurusanId", target = "jurusan")
     @Mapping(target = "seminar", ignore = true)

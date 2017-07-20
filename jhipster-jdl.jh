@@ -17,7 +17,7 @@ entity Mahasiswa {
     semester Integer required
     email String required
     nomorTelepon String
-    foto ImageBlob required   
+    foto ImageBlob required
 }
 entity Dosen {
 	nama String required
@@ -53,35 +53,51 @@ entity Sesi {
 
 // relationship
 relationship ManyToOne {
-	Seminar {dosenPertama} to Dosen
+	Seminar {dosenPertama(nama)} to Dosen
 }
 relationship ManyToOne {
-	Seminar {dosenKedua} to Dosen
+	Seminar {dosenKedua(nama)} to Dosen
 }
 relationship ManyToOne {
-	Mahasiswa {jurusan} to Jurusan {listMahasiswa}
+	Mahasiswa {jurusan(nama)} to Jurusan {listMahasiswa}
 }
 relationship ManyToMany {
-	PesertaSeminar {listSeminar} to Seminar {listPesertaSeminar}
+	PesertaSeminar {listSeminar(judul)} to Seminar {listPesertaSeminar}
 }
 relationship ManyToOne {
-	PesertaSeminar {mahasiswa} to Mahasiswa {listPesertaSeminar}
+	PesertaSeminar {mahasiswa(nim)} to Mahasiswa {listPesertaSeminar}
 }
 
 relationship OneToOne {
-	Seminar {mahasiswa} to Mahasiswa {seminar}
+	Seminar {mahasiswa(nama)} to Mahasiswa {seminar(judul)}
 }
 
 relationship OneToOne {
-	Seminar {jadwalSeminar} to JadwalSeminar {seminar}
+	Seminar {jadwalSeminar(tanggal)} to JadwalSeminar {seminar(judul)}
 }
 
 relationship ManyToOne {
-	JadwalSeminar {sesi} to  Sesi {listJadwalSeminar}
+	JadwalSeminar {sesi(urutan)} to  Sesi {listJadwalSeminar(tanggal)}
 }
 
 relationship ManyToOne {
-	JadwalSeminar {ruang} to Ruang {listJadwalSeminar}
+	JadwalSeminar {ruang(nama)} to Ruang {listJadwalSeminar(tanggal)}
+}
+
+relationship OneToOne {
+    Dosen {user(login)} to User
+}
+
+relationship OneToOne {
+    Jurusan {pic(login)} to User
+}
+
+relationship OneToOne {
+    Ruang {pic(login)} to User
+}
+
+relationship OneToOne {
+    Mahasiswa {user(login)} to User
 }
 
 // configuration

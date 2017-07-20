@@ -3,6 +3,8 @@ package io.github.semhas.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -23,6 +25,10 @@ public class DosenDTO implements Serializable {
 
     @NotNull
     private String nomorTelepon;
+
+    private Long userId;
+
+    private String userLogin;
 
     public Long getId() {
         return id;
@@ -62,6 +68,22 @@ public class DosenDTO implements Serializable {
 
     public void setNomorTelepon(String nomorTelepon) {
         this.nomorTelepon = nomorTelepon;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     @Override

@@ -20,6 +20,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nama"><span data-translate="semhasApp.jurusan.nama">Nama</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="picLogin"><span data-translate="semhasApp.jurusan.pic">Pic</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +28,9 @@
                 <tr ng-repeat="jurusan in vm.jurusans track by jurusan.id">
                     <td><a ui-sref="jurusan-detail({id:jurusan.id})">{{jurusan.id}}</a></td>
                     <td>{{jurusan.nama}}</td>
+                    <td>
+                        {{jurusan.picLogin}}
+                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

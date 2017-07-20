@@ -30,6 +30,10 @@ public class Ruang implements Serializable {
     @Column(name = "kapasitas")
     private Integer kapasitas;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User pic;
+
     @OneToMany(mappedBy = "ruang")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -67,6 +71,19 @@ public class Ruang implements Serializable {
 
     public void setKapasitas(Integer kapasitas) {
         this.kapasitas = kapasitas;
+    }
+
+    public User getPic() {
+        return pic;
+    }
+
+    public Ruang pic(User user) {
+        this.pic = user;
+        return this;
+    }
+
+    public void setPic(User user) {
+        this.pic = user;
     }
 
     public Set<JadwalSeminar> getListJadwalSeminars() {

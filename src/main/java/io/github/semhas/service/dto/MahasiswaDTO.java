@@ -34,7 +34,13 @@ public class MahasiswaDTO implements Serializable {
     private byte[] foto;
     private String fotoContentType;
 
+    private Long userId;
+
+    private String userLogin;
+
     private Long jurusanId;
+
+    private String jurusanNama;
 
     public Long getId() {
         return id;
@@ -100,12 +106,36 @@ public class MahasiswaDTO implements Serializable {
         this.fotoContentType = fotoContentType;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
     public Long getJurusanId() {
         return jurusanId;
     }
 
     public void setJurusanId(Long jurusanId) {
         this.jurusanId = jurusanId;
+    }
+
+    public String getJurusanNama() {
+        return jurusanNama;
+    }
+
+    public void setJurusanNama(String jurusanNama) {
+        this.jurusanNama = jurusanNama;
     }
 
     @Override

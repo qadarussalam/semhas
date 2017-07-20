@@ -29,7 +29,9 @@
             <column name="kapasitas" type="integer">
                 <constraints nullable="true" />
             </column>
-
+            <column name="pic_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

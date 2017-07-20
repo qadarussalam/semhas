@@ -33,9 +33,13 @@
                 {{vm.mahasiswa.fotoContentType}}, {{vm.byteSize(vm.mahasiswa.foto)}}
             </div>
         </dd>
+        <dt><span data-translate="semhasApp.mahasiswa.user">User</span></dt>
+        <dd>
+            {{vm.mahasiswa.userLogin}}
+        </dd>
         <dt><span data-translate="semhasApp.mahasiswa.jurusan">Jurusan</span></dt>
         <dd>
-            <a ui-sref="jurusan-detail({id:vm.mahasiswa.jurusanId})">{{vm.mahasiswa.jurusanId}}</a>
+            <a ui-sref="jurusan-detail({id:vm.mahasiswa.jurusanId})">{{vm.mahasiswa.jurusanNama}}</a>
         </dd>
     </dl>
 

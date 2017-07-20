@@ -2,10 +2,18 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "mahasiswa"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipName": "jurusan",
             "otherEntityName": "jurusan",
-            "otherEntityField": "id"
+            "otherEntityField": "nama"
         },
         {
             "relationshipType": "one-to-one",

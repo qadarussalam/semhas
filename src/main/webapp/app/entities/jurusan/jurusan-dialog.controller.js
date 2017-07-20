@@ -5,14 +5,15 @@
         .module('semhasApp')
         .controller('JurusanDialogController', JurusanDialogController);
 
-    JurusanDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Jurusan', 'Mahasiswa'];
+    JurusanDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Jurusan', 'User', 'Mahasiswa'];
 
-    function JurusanDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Jurusan, Mahasiswa) {
+    function JurusanDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Jurusan, User, Mahasiswa) {
         var vm = this;
 
         vm.jurusan = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.users = User.query();
         vm.mahasiswas = Mahasiswa.query();
 
         $timeout(function (){

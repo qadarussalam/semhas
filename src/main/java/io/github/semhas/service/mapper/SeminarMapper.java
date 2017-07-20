@@ -12,12 +12,16 @@ import org.mapstruct.*;
 public interface SeminarMapper extends EntityMapper <SeminarDTO, Seminar> {
 
     @Mapping(source = "mahasiswa.id", target = "mahasiswaId")
+    @Mapping(source = "mahasiswa.nama", target = "mahasiswaNama")
 
     @Mapping(source = "jadwalSeminar.id", target = "jadwalSeminarId")
+    @Mapping(source = "jadwalSeminar.tanggal", target = "jadwalSeminarTanggal")
 
     @Mapping(source = "dosenPertama.id", target = "dosenPertamaId")
+    @Mapping(source = "dosenPertama.nama", target = "dosenPertamaNama")
 
     @Mapping(source = "dosenKedua.id", target = "dosenKeduaId")
+    @Mapping(source = "dosenKedua.nama", target = "dosenKeduaNama")
     SeminarDTO toDto(Seminar seminar); 
 
     @Mapping(source = "mahasiswaId", target = "mahasiswa")

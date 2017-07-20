@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('MahasiswaDetailController', MahasiswaDetailController);
 
-    MahasiswaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Mahasiswa', 'Jurusan', 'Seminar', 'PesertaSeminar'];
+    MahasiswaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Mahasiswa', 'User', 'Jurusan', 'Seminar', 'PesertaSeminar'];
 
-    function MahasiswaDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Mahasiswa, Jurusan, Seminar, PesertaSeminar) {
+    function MahasiswaDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Mahasiswa, User, Jurusan, Seminar, PesertaSeminar) {
         var vm = this;
 
         vm.mahasiswa = entity;

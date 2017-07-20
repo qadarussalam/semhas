@@ -39,11 +39,19 @@ public class SeminarDTO implements Serializable {
 
     private Long mahasiswaId;
 
+    private String mahasiswaNama;
+
     private Long jadwalSeminarId;
+
+    private String jadwalSeminarTanggal;
 
     private Long dosenPertamaId;
 
+    private String dosenPertamaNama;
+
     private Long dosenKeduaId;
+
+    private String dosenKeduaNama;
 
     public Long getId() {
         return id;
@@ -125,12 +133,28 @@ public class SeminarDTO implements Serializable {
         this.mahasiswaId = mahasiswaId;
     }
 
+    public String getMahasiswaNama() {
+        return mahasiswaNama;
+    }
+
+    public void setMahasiswaNama(String mahasiswaNama) {
+        this.mahasiswaNama = mahasiswaNama;
+    }
+
     public Long getJadwalSeminarId() {
         return jadwalSeminarId;
     }
 
     public void setJadwalSeminarId(Long jadwalSeminarId) {
         this.jadwalSeminarId = jadwalSeminarId;
+    }
+
+    public String getJadwalSeminarTanggal() {
+        return jadwalSeminarTanggal;
+    }
+
+    public void setJadwalSeminarTanggal(String jadwalSeminarTanggal) {
+        this.jadwalSeminarTanggal = jadwalSeminarTanggal;
     }
 
     public Long getDosenPertamaId() {
@@ -141,12 +165,28 @@ public class SeminarDTO implements Serializable {
         this.dosenPertamaId = dosenId;
     }
 
+    public String getDosenPertamaNama() {
+        return dosenPertamaNama;
+    }
+
+    public void setDosenPertamaNama(String dosenNama) {
+        this.dosenPertamaNama = dosenNama;
+    }
+
     public Long getDosenKeduaId() {
         return dosenKeduaId;
     }
 
     public void setDosenKeduaId(Long dosenId) {
         this.dosenKeduaId = dosenId;
+    }
+
+    public String getDosenKeduaNama() {
+        return dosenKeduaNama;
+    }
+
+    public void setDosenKeduaNama(String dosenNama) {
+        this.dosenKeduaNama = dosenNama;
     }
 
     @Override

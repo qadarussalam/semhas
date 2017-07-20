@@ -5,14 +5,14 @@
             "relationshipType": "many-to-one",
             "relationshipName": "mahasiswa",
             "otherEntityName": "mahasiswa",
-            "otherEntityField": "id"
+            "otherEntityField": "nim"
         },
         {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "listPesertaSeminar",
             "relationshipName": "listSeminar",
             "otherEntityName": "seminar",
-            "otherEntityField": "id",
+            "otherEntityField": "judul",
             "ownerSide": true
         }
     ],

@@ -52,6 +52,10 @@ public class Mahasiswa implements Serializable {
     @Column(name = "foto_content_type", nullable = false)
     private String fotoContentType;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User user;
+
     @ManyToOne
     private Jurusan jurusan;
 
@@ -161,6 +165,19 @@ public class Mahasiswa implements Serializable {
 
     public void setFotoContentType(String fotoContentType) {
         this.fotoContentType = fotoContentType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Mahasiswa user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Jurusan getJurusan() {

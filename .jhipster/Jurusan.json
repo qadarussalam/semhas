@@ -2,6 +2,14 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "pic",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jurusan"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "listMahasiswa",
             "otherEntityName": "mahasiswa",

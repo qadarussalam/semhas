@@ -16,6 +16,7 @@
                 "title": "Jurusan"
             },
             "nama": "Nama",
+            "pic": "Pic",
             "listMahasiswa": "List Mahasiswa"
         }
     }

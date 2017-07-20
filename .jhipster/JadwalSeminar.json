@@ -5,13 +5,13 @@
             "relationshipType": "many-to-one",
             "relationshipName": "sesi",
             "otherEntityName": "sesi",
-            "otherEntityField": "id"
+            "otherEntityField": "urutan"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipName": "ruang",
             "otherEntityName": "ruang",
-            "otherEntityField": "id"
+            "otherEntityField": "nama"
         },
         {
             "relationshipType": "one-to-one",
