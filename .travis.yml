@@ -35,7 +35,6 @@ script:
   - ./gradlew clean test
   - gulp test
   - ./gradlew bootRepackage -Pprod -x test
-  - ./gradlew deployHeroku
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
