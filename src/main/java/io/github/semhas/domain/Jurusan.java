@@ -39,6 +39,13 @@ public class Jurusan implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Mahasiswa> listMahasiswas = new HashSet<>();
 
+    public Jurusan() {
+    }
+
+    public Jurusan(Long jurusanId) {
+        this.id = jurusanId;
+    }
+
     public Long getId() {
         return id;
     }

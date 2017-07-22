@@ -1,5 +1,6 @@
 package io.github.semhas.service;
 
+import io.github.semhas.domain.User;
 import io.github.semhas.service.dto.MahasiswaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,4 +47,6 @@ public interface MahasiswaService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    User createMahasiswaUser(String login, String password, String firstName, String lastName, String email, String imageUrl, String langKey, String nim, Integer semester, Long jurusanId, String nomorTelepon);
 }

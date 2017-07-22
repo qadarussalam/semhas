@@ -1,8 +1,13 @@
 package io.github.semhas.service.impl;
 
+import io.github.semhas.domain.Jurusan;
+import io.github.semhas.domain.User;
+import io.github.semhas.repository.AuthorityRepository;
+import io.github.semhas.security.AuthoritiesConstants;
 import io.github.semhas.service.MahasiswaService;
 import io.github.semhas.domain.Mahasiswa;
 import io.github.semhas.repository.MahasiswaRepository;
+import io.github.semhas.service.UserService;
 import io.github.semhas.service.dto.MahasiswaDTO;
 import io.github.semhas.service.mapper.MahasiswaMapper;
 import org.slf4j.Logger;
@@ -30,9 +35,15 @@ public class MahasiswaServiceImpl implements MahasiswaService{
 
     private final MahasiswaMapper mahasiswaMapper;
 
-    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper) {
+    private final UserService userService;
+
+    private final AuthorityRepository authorityRespository;
+
+    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper, UserService userService, AuthorityRepository authorityRespository) {
         this.mahasiswaRepository = mahasiswaRepository;
         this.mahasiswaMapper = mahasiswaMapper;
+        this.userService = userService;
+        this.authorityRespository = authorityRespository;
     }
 
     /**
@@ -68,7 +79,7 @@ public class MahasiswaServiceImpl implements MahasiswaService{
      *  get all the mahasiswas where Seminar is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<MahasiswaDTO> findAllWhereSeminarIsNull() {
         log.debug("Request to get all mahasiswas where Seminar is null");
         return StreamSupport
@@ -101,5 +112,22 @@ public class MahasiswaServiceImpl implements MahasiswaService{
     public void delete(Long id) {
         log.debug("Request to delete Mahasiswa : {}", id);
         mahasiswaRepository.delete(id);
+    }
+
+    @Override
+    public User createMahasiswaUser(String login, String password, String firstName, String lastName, String email, String imageUrl, String langKey, String nim, Integer semester, Long jurusanId, String nomorTelepon) {
+        User user = userService.createUser(login, password, firstName, lastName, email, imageUrl, langKey);
+        user.getAuthorities().add(authorityRespository.findOne(AuthoritiesConstants.MAHASISWA));
+
+        Mahasiswa mahasiswa = new Mahasiswa();
+        mahasiswa.setEmail(email);
+        mahasiswa.setJurusan(new Jurusan(jurusanId));
+        mahasiswa.setNama(firstName + " " + lastName);
+        mahasiswa.setNim(nim);
+        mahasiswa.setNomorTelepon(nomorTelepon);
+        mahasiswa.setSemester(semester);
+        mahasiswa.setUser(user);
+        mahasiswaRepository.save(mahasiswa);
+        return user;
     }
 }

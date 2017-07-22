@@ -5,10 +5,12 @@ import com.codahale.metrics.annotation.Timed;
 import io.github.semhas.domain.User;
 import io.github.semhas.repository.UserRepository;
 import io.github.semhas.security.SecurityUtils;
+import io.github.semhas.service.MahasiswaService;
 import io.github.semhas.service.MailService;
 import io.github.semhas.service.UserService;
 import io.github.semhas.service.dto.UserDTO;
 import io.github.semhas.web.rest.vm.KeyAndPasswordVM;
+import io.github.semhas.web.rest.vm.ManagedMahasiswaUserVM;
 import io.github.semhas.web.rest.vm.ManagedUserVM;
 import io.github.semhas.web.rest.util.HeaderUtil;
 
@@ -40,14 +42,17 @@ public class AccountResource {
 
     private final MailService mailService;
 
+    private final MahasiswaService mahasiswaService;
+
     private static final String CHECK_ERROR_MESSAGE = "Incorrect password";
 
     public AccountResource(UserRepository userRepository, UserService userService,
-            MailService mailService) {
+                           MailService mailService, MahasiswaService mahasiswaService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.mahasiswaService = mahasiswaService;
     }
 
     /**
@@ -81,6 +86,39 @@ public class AccountResource {
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 })
         );
+    }
+
+    /**
+     * POST  /register : register the user.
+     *
+     * @param managedUserVM the managed user View Model
+     * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or email is already in use
+     */
+    @PostMapping(path = "/register/mahasiswa",
+        produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
+    @Timed
+    public ResponseEntity registerMahasiswaAccount(@Valid @RequestBody ManagedMahasiswaUserVM managedUserVM) {
+
+        HttpHeaders textPlainHeaders = new HttpHeaders();
+        textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
+        if (!checkPasswordLength(managedUserVM.getPassword())) {
+            return new ResponseEntity<>(CHECK_ERROR_MESSAGE, HttpStatus.BAD_REQUEST);
+        }
+        return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
+            .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
+            .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
+                .map(user -> new ResponseEntity<>("email address already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                    User user = mahasiswaService
+                        .createMahasiswaUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
+                            managedUserVM.getFirstName(), managedUserVM.getLastName(),
+                            managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(),
+                            managedUserVM.getLangKey(),managedUserVM.getNim(),managedUserVM.getSemester(),managedUserVM.getJurusanId(),managedUserVM.getNomorTelepon());
+
+                    mailService.sendActivationEmail(user);
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                })
+            );
     }
 
     /**
