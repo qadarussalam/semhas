@@ -52,7 +52,11 @@ public class SeminarServiceImpl implements SeminarService{
             JadwalSeminarDTO jadwal = jadwalSeminarService.findOne(jadwalSeminar.getId());
             if (jadwal != null) {
                 seminar.setRuangan(jadwal.getRuangNama());
+            } else {
+                seminar.setRuangan(null);
             }
+        } else {
+            seminar.setRuangan(null);
         }
         seminar = seminarRepository.save(seminar);
         return seminarMapper.toDto(seminar);
