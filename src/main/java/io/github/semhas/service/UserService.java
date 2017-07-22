@@ -239,4 +239,8 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
+
+    public Page<UserDTO> getAllManagedUsersByRole(Authority role, Pageable pageable) {
+        return userRepository.findAllByAuthoritiesContainsAndLoginNot(role, pageable, Constants.ANONYMOUS_USER).map(UserDTO::new);
+    }
 }

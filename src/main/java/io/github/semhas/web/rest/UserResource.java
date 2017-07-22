@@ -2,7 +2,9 @@ package io.github.semhas.web.rest;
 
 import io.github.semhas.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import io.github.semhas.domain.Authority;
 import io.github.semhas.domain.User;
+import io.github.semhas.repository.AuthorityRepository;
 import io.github.semhas.repository.UserRepository;
 import io.github.semhas.security.AuthoritiesConstants;
 import io.github.semhas.service.MailService;
@@ -67,12 +69,15 @@ public class UserResource {
 
     private final UserService userService;
 
+    private final AuthorityRepository authorityRepository;
+
     public UserResource(UserRepository userRepository, MailService mailService,
-            UserService userService) {
+                        UserService userService, AuthorityRepository authorityRepository) {
 
         this.userRepository = userRepository;
         this.mailService = mailService;
         this.userService = userService;
+        this.authorityRepository = authorityRepository;
     }
 
     /**
@@ -152,6 +157,31 @@ public class UserResource {
     public ResponseEntity<List<UserDTO>> getAllUsers(@ApiParam Pageable pageable) {
         final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/users", params = {"role"})
+    @Timed
+    public ResponseEntity<List<UserDTO>> getAllUsersByRole(@RequestParam String role, @ApiParam Pageable pageable) {
+        Authority authority = null;
+        switch (role) {
+            case AuthoritiesConstants.DOSEN:
+                authority = authorityRepository.findOne(AuthoritiesConstants.DOSEN);
+                break;
+            case AuthoritiesConstants.MAHASISWA:
+                authority = authorityRepository.findOne(AuthoritiesConstants.MAHASISWA);
+                break;
+            case AuthoritiesConstants.PRODI:
+                authority = authorityRepository.findOne(AuthoritiesConstants.PRODI);
+                break;
+            case AuthoritiesConstants.ADMIN_RUANG:
+                authority = authorityRepository.findOne(AuthoritiesConstants.ADMIN_RUANG);
+                break;
+            default:
+                return ResponseEntity.ok(new ArrayList<>());
+        }
+        final Page<UserDTO> page = userService.getAllManagedUsersByRole(authority, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users/" + role);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

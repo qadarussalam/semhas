@@ -1,5 +1,6 @@
 package io.github.semhas.repository;
 
+import io.github.semhas.domain.Authority;
 import io.github.semhas.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,4 +34,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneWithAuthoritiesByLogin(String login);
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
+
+    Page<User> findAllByAuthoritiesContainsAndLoginNot(Authority role, Pageable pageable, String login);
 }
