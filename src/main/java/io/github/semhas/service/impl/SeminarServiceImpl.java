@@ -46,12 +46,25 @@ public class SeminarServiceImpl implements SeminarService{
     @Override
     public SeminarDTO save(SeminarDTO seminarDTO) {
         log.debug("Request to save Seminar : {}", seminarDTO);
-        Seminar seminar = seminarMapper.toEntity(seminarDTO);
+        Seminar seminar = null;
+
+        if (seminarDTO.getId() != null) {
+            seminar = seminarRepository.findOne(seminarDTO.getId());
+            JadwalSeminar existingJadwal = seminar.getJadwalSeminar();
+            if (existingJadwal != null && !existingJadwal.getId().equals(seminarDTO.getJadwalSeminarId())) {
+                existingJadwal.setTersedia(true);
+            }
+        }
+
+        seminar = seminarMapper.toEntity(seminarDTO);
+
         JadwalSeminar jadwalSeminar = seminar.getJadwalSeminar();
         if (jadwalSeminar != null) {
             JadwalSeminarDTO jadwal = jadwalSeminarService.findOne(jadwalSeminar.getId());
             if (jadwal != null) {
                 seminar.setRuangan(jadwal.getRuangNama());
+                jadwal.setTersedia(false);
+                jadwalSeminarService.save(jadwal);
             } else {
                 seminar.setRuangan(null);
             }
