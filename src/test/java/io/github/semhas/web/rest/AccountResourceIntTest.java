@@ -6,6 +6,7 @@ import io.github.semhas.domain.User;
 import io.github.semhas.repository.AuthorityRepository;
 import io.github.semhas.repository.UserRepository;
 import io.github.semhas.security.AuthoritiesConstants;
+import io.github.semhas.service.MahasiswaService;
 import io.github.semhas.service.MailService;
 import io.github.semhas.service.UserService;
 import io.github.semhas.service.dto.UserDTO;
@@ -74,6 +75,9 @@ public class AccountResourceIntTest {
     private MockMvc restUserMockMvc;
 
     private MockMvc restMvc;
+
+    @Mock
+    private MahasiswaService userMahasiswa;
 
     @Before
     public void setup() {

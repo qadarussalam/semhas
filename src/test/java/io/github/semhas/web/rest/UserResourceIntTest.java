@@ -3,6 +3,7 @@ package io.github.semhas.web.rest;
 import io.github.semhas.SemhasApp;
 import io.github.semhas.domain.Authority;
 import io.github.semhas.domain.User;
+import io.github.semhas.repository.AuthorityRepository;
 import io.github.semhas.repository.UserRepository;
 import io.github.semhas.security.AuthoritiesConstants;
 import io.github.semhas.service.MailService;
@@ -99,6 +100,9 @@ public class UserResourceIntTest {
     private MockMvc restUserMockMvc;
 
     private User user;
+
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     @Before
     public void setup() {
@@ -529,7 +533,7 @@ public class UserResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$").isArray())
-            .andExpect(jsonPath("$").value(containsInAnyOrder("ROLE_USER", "ROLE_ADMIN")));
+            .andExpect(jsonPath("$").value(containsInAnyOrder("ROLE_USER", "ROLE_ADMIN", "ROLE_ADMIN_RUANG", "ROLE_DOSEN", "ROLE_MAHASISWA", "ROLE_PRODI")));
     }
 
     @Test
