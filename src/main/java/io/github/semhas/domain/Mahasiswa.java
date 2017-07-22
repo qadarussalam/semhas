@@ -44,7 +44,6 @@ public class Mahasiswa implements Serializable {
     @Column(name = "nomor_telepon")
     private String nomorTelepon;
 
-    @NotNull
     @Lob
     @Column(name = "foto", nullable = false)
     private byte[] foto;
