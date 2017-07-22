@@ -149,7 +149,6 @@ public class SeminarResourceIntTest {
         assertThat(testSeminar.getAbstrak()).isEqualTo(DEFAULT_ABSTRAK);
         assertThat(testSeminar.getFileAccSeminar()).isEqualTo(DEFAULT_FILE_ACC_SEMINAR);
         assertThat(testSeminar.getFileAccSeminarContentType()).isEqualTo(DEFAULT_FILE_ACC_SEMINAR_CONTENT_TYPE);
-        assertThat(testSeminar.getRuangan()).isEqualTo(DEFAULT_RUANGAN);
         assertThat(testSeminar.getJamMulai()).isEqualTo(DEFAULT_JAM_MULAI);
         assertThat(testSeminar.getJamSelesai()).isEqualTo(DEFAULT_JAM_SELESAI);
         assertThat(testSeminar.getStatus()).isEqualTo(DEFAULT_STATUS);
@@ -315,7 +314,6 @@ public class SeminarResourceIntTest {
         assertThat(testSeminar.getAbstrak()).isEqualTo(UPDATED_ABSTRAK);
         assertThat(testSeminar.getFileAccSeminar()).isEqualTo(UPDATED_FILE_ACC_SEMINAR);
         assertThat(testSeminar.getFileAccSeminarContentType()).isEqualTo(UPDATED_FILE_ACC_SEMINAR_CONTENT_TYPE);
-        assertThat(testSeminar.getRuangan()).isEqualTo(UPDATED_RUANGAN);
         assertThat(testSeminar.getJamMulai()).isEqualTo(UPDATED_JAM_MULAI);
         assertThat(testSeminar.getJamSelesai()).isEqualTo(UPDATED_JAM_SELESAI);
         assertThat(testSeminar.getStatus()).isEqualTo(UPDATED_STATUS);
