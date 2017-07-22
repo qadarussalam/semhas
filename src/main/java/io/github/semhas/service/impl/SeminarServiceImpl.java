@@ -1,8 +1,11 @@
 package io.github.semhas.service.impl;
 
+import io.github.semhas.domain.JadwalSeminar;
+import io.github.semhas.service.JadwalSeminarService;
 import io.github.semhas.service.SeminarService;
 import io.github.semhas.domain.Seminar;
 import io.github.semhas.repository.SeminarRepository;
+import io.github.semhas.service.dto.JadwalSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import io.github.semhas.service.mapper.SeminarMapper;
 import org.slf4j.Logger;
@@ -26,9 +29,12 @@ public class SeminarServiceImpl implements SeminarService{
 
     private final SeminarMapper seminarMapper;
 
-    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper) {
+    private final JadwalSeminarService jadwalSeminarService;
+
+    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService) {
         this.seminarRepository = seminarRepository;
         this.seminarMapper = seminarMapper;
+        this.jadwalSeminarService = jadwalSeminarService;
     }
 
     /**
@@ -41,6 +47,13 @@ public class SeminarServiceImpl implements SeminarService{
     public SeminarDTO save(SeminarDTO seminarDTO) {
         log.debug("Request to save Seminar : {}", seminarDTO);
         Seminar seminar = seminarMapper.toEntity(seminarDTO);
+        JadwalSeminar jadwalSeminar = seminar.getJadwalSeminar();
+        if (jadwalSeminar != null) {
+            JadwalSeminarDTO jadwal = jadwalSeminarService.findOne(jadwalSeminar.getId());
+            if (jadwal != null) {
+                seminar.setRuangan(jadwal.getRuangNama());
+            }
+        }
         seminar = seminarRepository.save(seminar);
         return seminarMapper.toDto(seminar);
     }
