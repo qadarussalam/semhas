@@ -83,4 +83,11 @@ public class SeminarServiceImpl implements SeminarService{
         log.debug("Request to delete Seminar : {}", id);
         seminarRepository.delete(id);
     }
+
+    @Override
+    public Page<SeminarDTO> searchByJudul(String query, Pageable pageable) {
+        log.debug("Request to search Seminar by judul like {}", query);
+        return seminarRepository.findAllByJudulContains(query, pageable)
+            .map(seminarMapper::toDto);
+    }
 }

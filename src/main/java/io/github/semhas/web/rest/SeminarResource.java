@@ -124,4 +124,13 @@ public class SeminarResource {
         seminarService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping(value = "/seminars", params = {"q"})
+    @Timed
+    public ResponseEntity<List<SeminarDTO>> searchSeminar(@RequestParam("q") String query, @ApiParam Pageable pageable) {
+        log.debug("REST request to search Seminar with keyword : {}", query);
+        Page<SeminarDTO> page = seminarService.searchByJudul(query,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars?q=" + query);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 }

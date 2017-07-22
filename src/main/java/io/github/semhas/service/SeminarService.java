@@ -39,4 +39,6 @@ public interface SeminarService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    Page<SeminarDTO> searchByJudul(String query, Pageable pageable);
 }
