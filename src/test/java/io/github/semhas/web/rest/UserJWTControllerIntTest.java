@@ -4,6 +4,8 @@ import io.github.semhas.SemhasApp;
 import io.github.semhas.domain.User;
 import io.github.semhas.repository.UserRepository;
 import io.github.semhas.security.jwt.TokenProvider;
+import io.github.semhas.service.DosenService;
+import io.github.semhas.service.MahasiswaService;
 import io.github.semhas.web.rest.vm.LoginVM;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +45,12 @@ public class UserJWTControllerIntTest {
     private PasswordEncoder passwordEncoder;
 
     private MockMvc mockMvc;
+
+    @Autowired
+    private MahasiswaService mahasiswaService;
+
+    @Autowired
+    private DosenService dosenService;
 
     @Before
     public void setup() {
