@@ -1,6 +1,7 @@
 package io.github.semhas.service.impl;
 
 import io.github.semhas.domain.JadwalSeminar;
+import io.github.semhas.domain.enumeration.StatusSeminar;
 import io.github.semhas.service.JadwalSeminarService;
 import io.github.semhas.service.SeminarService;
 import io.github.semhas.domain.Seminar;
@@ -118,6 +119,27 @@ public class SeminarServiceImpl implements SeminarService{
     public Page<SeminarDTO> searchByJudul(String query, Pageable pageable) {
         log.debug("Request to search Seminar by judul like {}", query);
         return seminarRepository.findAllByJudulContains(query, pageable)
+            .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public Page<SeminarDTO> findAllByStatus(StatusSeminar status, Pageable pageable) {
+        log.debug("Request to all Seminar by status {}", status);
+        return seminarRepository.findAllByStatus(status, pageable)
+            .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public Page<SeminarDTO> findAllByStatusAndDosenId(StatusSeminar status, Long dosenId, Pageable pageable) {
+        log.debug("Request to all Seminar by status {} and dosenId {}", status, dosenId);
+        return seminarRepository.findAllByStatusAndDosenPertamaIdOrDosenKeduaId(status, dosenId, dosenId, pageable)
+            .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public Page<SeminarDTO> findAllByDosenId(Long dosenId, Pageable pageable) {
+        log.debug("Request to all Seminar by dosenId {}", dosenId);
+        return seminarRepository.findAllByDosenPertamaIdOrDosenKeduaId(dosenId, dosenId, pageable)
             .map(seminarMapper::toDto);
     }
 }

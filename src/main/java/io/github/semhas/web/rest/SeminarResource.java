@@ -1,12 +1,13 @@
 package io.github.semhas.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
+import io.github.semhas.domain.enumeration.StatusSeminar;
 import io.github.semhas.service.SeminarService;
+import io.github.semhas.service.dto.SeminarDTO;
 import io.github.semhas.web.rest.util.HeaderUtil;
 import io.github.semhas.web.rest.util.PaginationUtil;
-import io.github.semhas.service.dto.SeminarDTO;
 import io.swagger.annotations.ApiParam;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -83,21 +83,6 @@ public class SeminarResource {
     }
 
     /**
-     * GET  /seminars : get all the seminars.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of seminars in body
-     */
-    @GetMapping("/seminars")
-    @Timed
-    public ResponseEntity<List<SeminarDTO>> getAllSeminars(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Seminars");
-        Page<SeminarDTO> page = seminarService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
-    /**
      * GET  /seminars/:id : get the "id" seminar.
      *
      * @param id the id of the seminarDTO to retrieve
@@ -127,10 +112,37 @@ public class SeminarResource {
 
     @GetMapping(value = "/seminars", params = {"q"})
     @Timed
-    public ResponseEntity<List<SeminarDTO>> searchSeminar(@RequestParam("q") String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<SeminarDTO>> searchSeminar(@RequestParam(value = "q", required = true) String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search Seminar with keyword : {}", query);
         Page<SeminarDTO> page = seminarService.searchByJudul(query,pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars?q=" + query);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/seminars", params = {"status","dosenId"})
+    @Timed
+    public ResponseEntity<List<SeminarDTO>> findSeminarBy(@RequestParam(required = false) StatusSeminar status,
+                                                          @RequestParam(required = false) Long dosenId, @ApiParam Pageable pageable) {
+        log.debug("REST request to search Seminar with status {} and dosenId {}", status, dosenId);
+        Page<SeminarDTO> page = null;
+        String urlParams = "";
+        if (status != null) {
+            if (dosenId == null) {
+                page = seminarService.findAllByStatus(status, pageable);
+                urlParams += "status=" + status.name();
+            } else {
+                page = seminarService.findAllByStatusAndDosenId(status, dosenId, pageable);
+                urlParams += "status=" + status.name() + "&dosenId=" + dosenId;
+            }
+        } else {
+            if (dosenId != null) {
+                page = seminarService.findAllByDosenId(dosenId, pageable);
+                urlParams += "dosenId=" + dosenId;
+            } else {
+                page = seminarService.findAll(pageable);
+            }
+        }
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars?" + urlParams);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 }
