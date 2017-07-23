@@ -43,7 +43,7 @@ public class SeminarDTO implements Serializable {
 
     private Long jadwalSeminarId;
 
-    private String jadwalSeminarTanggal;
+    private ZonedDateTime jadwalSeminarTanggal;
 
     private Long dosenPertamaId;
 
@@ -149,11 +149,11 @@ public class SeminarDTO implements Serializable {
         this.jadwalSeminarId = jadwalSeminarId;
     }
 
-    public String getJadwalSeminarTanggal() {
+    public ZonedDateTime getJadwalSeminarTanggal() {
         return jadwalSeminarTanggal;
     }
 
-    public void setJadwalSeminarTanggal(String jadwalSeminarTanggal) {
+    public void setJadwalSeminarTanggal(ZonedDateTime jadwalSeminarTanggal) {
         this.jadwalSeminarTanggal = jadwalSeminarTanggal;
     }
 
