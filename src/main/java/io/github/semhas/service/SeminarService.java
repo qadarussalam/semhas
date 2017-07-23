@@ -1,9 +1,12 @@
 package io.github.semhas.service;
 
 import io.github.semhas.domain.enumeration.StatusSeminar;
+import io.github.semhas.service.dto.PesertaSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * Service Interface for managing Seminar.
@@ -48,4 +51,6 @@ public interface SeminarService {
     Page<SeminarDTO> findAllByStatusAndDosenId(StatusSeminar status, Long dosenId, Pageable pageable);
 
     Page<SeminarDTO> findAllByDosenId(Long dosenId, Pageable pageable);
+
+    List<PesertaSeminarDTO> findPesertaSeminar(Long id);
 }

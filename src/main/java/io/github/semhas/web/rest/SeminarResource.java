@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 import io.github.semhas.domain.enumeration.StatusSeminar;
 import io.github.semhas.service.SeminarService;
+import io.github.semhas.service.dto.PesertaSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import io.github.semhas.web.rest.util.HeaderUtil;
 import io.github.semhas.web.rest.util.PaginationUtil;
@@ -145,5 +146,19 @@ public class SeminarResource {
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars?" + urlParams);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /seminars/:id/pesertas : get the list of perserta of "id" seminar.
+     *
+     * @param id the id of the seminarDTO peserta to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the list of PesertaSeminarDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/seminars/{id}/pesertas")
+    @Timed
+    public ResponseEntity<List<PesertaSeminarDTO>> getPesertaSeminar(@PathVariable Long id) {
+        log.debug("REST request to get list of peserta of Seminar : {}", id);
+        List<PesertaSeminarDTO> result = seminarService.findPesertaSeminar(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(result));
     }
 }

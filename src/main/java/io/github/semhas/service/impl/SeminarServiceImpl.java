@@ -1,13 +1,16 @@
 package io.github.semhas.service.impl;
 
 import io.github.semhas.domain.JadwalSeminar;
+import io.github.semhas.domain.PesertaSeminar;
 import io.github.semhas.domain.enumeration.StatusSeminar;
 import io.github.semhas.service.JadwalSeminarService;
 import io.github.semhas.service.SeminarService;
 import io.github.semhas.domain.Seminar;
 import io.github.semhas.repository.SeminarRepository;
 import io.github.semhas.service.dto.JadwalSeminarDTO;
+import io.github.semhas.service.dto.PesertaSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
+import io.github.semhas.service.mapper.PesertaSeminarMapper;
 import io.github.semhas.service.mapper.SeminarMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,10 +38,13 @@ public class SeminarServiceImpl implements SeminarService{
 
     private final JadwalSeminarService jadwalSeminarService;
 
-    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService) {
+    private final PesertaSeminarMapper pesertaSeminarMapper;
+
+    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService, PesertaSeminarMapper pesertaSeminarMapper) {
         this.seminarRepository = seminarRepository;
         this.seminarMapper = seminarMapper;
         this.jadwalSeminarService = jadwalSeminarService;
+        this.pesertaSeminarMapper = pesertaSeminarMapper;
     }
 
     /**
@@ -141,5 +150,18 @@ public class SeminarServiceImpl implements SeminarService{
         log.debug("Request to all Seminar by dosenId {}", dosenId);
         return seminarRepository.findAllByDosenPertamaIdOrDosenKeduaId(dosenId, dosenId, pageable)
             .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public List<PesertaSeminarDTO> findPesertaSeminar(Long id) {
+        Seminar one = seminarRepository.findOne(id);
+        if (one != null) {
+            List<PesertaSeminarDTO> result = new ArrayList<>();
+            for (PesertaSeminar pesertaSeminar : one.getListPesertaSeminars()) {
+                result.add(pesertaSeminarMapper.toDto(pesertaSeminar));
+            }
+            return result;
+        }
+        return null;
     }
 }
