@@ -9,7 +9,9 @@ import io.github.semhas.domain.Mahasiswa;
 import io.github.semhas.repository.MahasiswaRepository;
 import io.github.semhas.service.UserService;
 import io.github.semhas.service.dto.MahasiswaDTO;
+import io.github.semhas.service.dto.SeminarDTO;
 import io.github.semhas.service.mapper.MahasiswaMapper;
+import io.github.semhas.service.mapper.SeminarMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -39,11 +41,14 @@ public class MahasiswaServiceImpl implements MahasiswaService{
 
     private final AuthorityRepository authorityRespository;
 
-    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper, UserService userService, AuthorityRepository authorityRespository) {
+    private final SeminarMapper seminarMapper;
+
+    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper, UserService userService, AuthorityRepository authorityRespository, SeminarMapper seminarMapper) {
         this.mahasiswaRepository = mahasiswaRepository;
         this.mahasiswaMapper = mahasiswaMapper;
         this.userService = userService;
         this.authorityRespository = authorityRespository;
+        this.seminarMapper = seminarMapper;
     }
 
     /**
@@ -135,5 +140,14 @@ public class MahasiswaServiceImpl implements MahasiswaService{
     public MahasiswaDTO findByUserLogin(String username) {
         Mahasiswa m = mahasiswaRepository.findOneByUserLogin(username);
         return mahasiswaMapper.toDto(m);
+    }
+
+    @Override
+    public SeminarDTO findSeminarByMahasiswaId(Long id) {
+        Mahasiswa one = mahasiswaRepository.findOne(id);
+        if (one != null) {
+            return seminarMapper.toDto(one.getSeminar());
+        }
+        return null;
     }
 }
