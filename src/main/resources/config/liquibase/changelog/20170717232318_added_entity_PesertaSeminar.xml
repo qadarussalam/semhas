@@ -27,22 +27,15 @@
             </column>
 
             <column name="mahasiswa_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
+            </column>
+
+            <column name="seminar_id" type="bigint">
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
-        <createTable tableName="peserta_seminar_list_seminar">
-            <column name="list_seminars_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="peserta_seminars_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
 
-        <addPrimaryKey columnNames="peserta_seminars_id, list_seminars_id" tableName="peserta_seminar_list_seminar"/>
-        
     </changeSet>
 </databaseChangeLog>

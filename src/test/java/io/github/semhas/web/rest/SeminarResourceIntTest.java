@@ -238,7 +238,7 @@ public class SeminarResourceIntTest {
         seminarRepository.saveAndFlush(seminar);
 
         // Get all the seminarList
-        restSeminarMockMvc.perform(get("/api/seminars?sort=id,desc"))
+        restSeminarMockMvc.perform(get("/api/seminars?status=&dosenId=&sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(seminar.getId().intValue())))

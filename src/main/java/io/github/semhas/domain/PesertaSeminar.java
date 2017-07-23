@@ -32,12 +32,9 @@ public class PesertaSeminar implements Serializable {
     @ManyToOne
     private Mahasiswa mahasiswa;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "peserta_seminar_list_seminar",
-               joinColumns = @JoinColumn(name="peserta_seminars_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="list_seminars_id", referencedColumnName="id"))
-    private Set<Seminar> listSeminars = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "seminar_id")
+    private Seminar seminar;
 
     public Long getId() {
         return id;
@@ -73,29 +70,17 @@ public class PesertaSeminar implements Serializable {
         this.mahasiswa = mahasiswa;
     }
 
-    public Set<Seminar> getListSeminars() {
-        return listSeminars;
+    public PesertaSeminar seminar(Seminar seminar) {
+        this.seminar = seminar;
+        return  this;
     }
 
-    public PesertaSeminar listSeminars(Set<Seminar> seminars) {
-        this.listSeminars = seminars;
-        return this;
+    public Seminar getSeminar() {
+        return seminar;
     }
 
-    public PesertaSeminar addListSeminar(Seminar seminar) {
-        this.listSeminars.add(seminar);
-        seminar.getListPesertaSeminars().add(this);
-        return this;
-    }
-
-    public PesertaSeminar removeListSeminar(Seminar seminar) {
-        this.listSeminars.remove(seminar);
-        seminar.getListPesertaSeminars().remove(this);
-        return this;
-    }
-
-    public void setListSeminars(Set<Seminar> seminars) {
-        this.listSeminars = seminars;
+    public void setSeminar(Seminar seminar) {
+        this.seminar = seminar;
     }
 
     @Override
@@ -123,6 +108,7 @@ public class PesertaSeminar implements Serializable {
         return "PesertaSeminar{" +
             "id=" + getId() +
             ", absensi='" + getAbsensi() + "'" +
+            ", seminar='" + getSeminar() + "'" +
             "}";
     }
 }

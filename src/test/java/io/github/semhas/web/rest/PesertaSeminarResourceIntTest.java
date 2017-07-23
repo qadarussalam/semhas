@@ -2,7 +2,9 @@ package io.github.semhas.web.rest;
 
 import io.github.semhas.SemhasApp;
 
+import io.github.semhas.domain.Mahasiswa;
 import io.github.semhas.domain.PesertaSeminar;
+import io.github.semhas.domain.Seminar;
 import io.github.semhas.repository.PesertaSeminarRepository;
 import io.github.semhas.service.PesertaSeminarService;
 import io.github.semhas.service.dto.PesertaSeminarDTO;
@@ -86,8 +88,13 @@ public class PesertaSeminarResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static PesertaSeminar createEntity(EntityManager em) {
+        Mahasiswa mhs = MahasiswaResourceIntTest.createEntity(em);
+        em.persist(mhs);
+        Seminar seminar = SeminarResourceIntTest.createEntity(em);
+        em.persist(seminar);
         PesertaSeminar pesertaSeminar = new PesertaSeminar()
-            .absensi(DEFAULT_ABSENSI);
+            .absensi(DEFAULT_ABSENSI).mahasiswa(mhs)
+            .seminar(seminar);
         return pesertaSeminar;
     }
 

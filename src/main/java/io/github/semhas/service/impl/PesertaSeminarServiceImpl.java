@@ -69,7 +69,7 @@ public class PesertaSeminarServiceImpl implements PesertaSeminarService{
     @Transactional(readOnly = true)
     public PesertaSeminarDTO findOne(Long id) {
         log.debug("Request to get PesertaSeminar : {}", id);
-        PesertaSeminar pesertaSeminar = pesertaSeminarRepository.findOneWithEagerRelationships(id);
+        PesertaSeminar pesertaSeminar = pesertaSeminarRepository.findOne(id);
         return pesertaSeminarMapper.toDto(pesertaSeminar);
     }
 

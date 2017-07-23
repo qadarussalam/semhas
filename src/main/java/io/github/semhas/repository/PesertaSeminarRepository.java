@@ -13,11 +13,4 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface PesertaSeminarRepository extends JpaRepository<PesertaSeminar,Long> {
-    
-    @Query("select distinct peserta_seminar from PesertaSeminar peserta_seminar left join fetch peserta_seminar.listSeminars")
-    List<PesertaSeminar> findAllWithEagerRelationships();
-
-    @Query("select peserta_seminar from PesertaSeminar peserta_seminar left join fetch peserta_seminar.listSeminars where peserta_seminar.id =:id")
-    PesertaSeminar findOneWithEagerRelationships(@Param("id") Long id);
-    
 }

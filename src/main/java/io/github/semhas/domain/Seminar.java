@@ -72,7 +72,7 @@ public class Seminar implements Serializable {
     @ManyToOne
     private Dosen dosenKedua;
 
-    @ManyToMany(mappedBy = "listSeminars")
+    @OneToMany(mappedBy = "seminar")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PesertaSeminar> listPesertaSeminars = new HashSet<>();
@@ -247,18 +247,6 @@ public class Seminar implements Serializable {
 
     public Seminar listPesertaSeminars(Set<PesertaSeminar> pesertaSeminars) {
         this.listPesertaSeminars = pesertaSeminars;
-        return this;
-    }
-
-    public Seminar addListPesertaSeminar(PesertaSeminar pesertaSeminar) {
-        this.listPesertaSeminars.add(pesertaSeminar);
-        pesertaSeminar.getListSeminars().add(this);
-        return this;
-    }
-
-    public Seminar removeListPesertaSeminar(PesertaSeminar pesertaSeminar) {
-        this.listPesertaSeminars.remove(pesertaSeminar);
-        pesertaSeminar.getListSeminars().remove(this);
         return this;
     }
 

@@ -20,7 +20,7 @@ public class PesertaSeminarDTO implements Serializable {
 
     private String mahasiswaNim;
 
-    private Set<SeminarDTO> listSeminars = new HashSet<>();
+    private SeminarDTO seminar;
 
     public Long getId() {
         return id;
@@ -54,12 +54,12 @@ public class PesertaSeminarDTO implements Serializable {
         this.mahasiswaNim = mahasiswaNim;
     }
 
-    public Set<SeminarDTO> getListSeminars() {
-        return listSeminars;
+    public SeminarDTO getSeminar() {
+        return seminar;
     }
 
-    public void setListSeminars(Set<SeminarDTO> seminars) {
-        this.listSeminars = seminars;
+    public void setSeminar(SeminarDTO seminar) {
+        this.seminar = seminar;
     }
 
     @Override
@@ -88,6 +88,7 @@ public class PesertaSeminarDTO implements Serializable {
         return "PesertaSeminarDTO{" +
             "id=" + getId() +
             ", absensi='" + getAbsensi() + "'" +
+            ", seminar='" + getSeminar() + "'" +
             "}";
     }
 }
