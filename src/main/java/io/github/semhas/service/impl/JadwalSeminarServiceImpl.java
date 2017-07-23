@@ -68,7 +68,7 @@ public class JadwalSeminarServiceImpl implements JadwalSeminarService{
      *  get all the jadwalSeminars where Seminar is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<JadwalSeminarDTO> findAllWhereSeminarIsNull() {
         log.debug("Request to get all jadwalSeminars where Seminar is null");
         return StreamSupport
@@ -101,5 +101,25 @@ public class JadwalSeminarServiceImpl implements JadwalSeminarService{
     public void delete(Long id) {
         log.debug("Request to delete JadwalSeminar : {}", id);
         jadwalSeminarRepository.delete(id);
+    }
+
+    @Override
+    public List<JadwalSeminarDTO> findAllWhereTersedia() {
+        log.debug("Request to get all jadwalSeminars where tersedia is true");
+        return StreamSupport
+            .stream(jadwalSeminarRepository.findAll().spliterator(), false)
+            .filter(jadwalSeminar -> jadwalSeminar.isTersedia())
+            .map(jadwalSeminarMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @Override
+    public List<JadwalSeminarDTO> findAllWhereNotTersedia() {
+        log.debug("Request to get all jadwalSeminars where tersedia is false");
+        return StreamSupport
+            .stream(jadwalSeminarRepository.findAll().spliterator(), false)
+            .filter(jadwalSeminar -> !jadwalSeminar.isTersedia())
+            .map(jadwalSeminarMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }

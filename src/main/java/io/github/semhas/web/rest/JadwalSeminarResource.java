@@ -86,7 +86,7 @@ public class JadwalSeminarResource {
      * GET  /jadwal-seminars : get all the jadwalSeminars.
      *
      * @param pageable the pagination information
-     * @param filter the filter of the request
+     * @param filter the filter of the request {seminar-is-null, tersedia, not-tersedia}
      * @return the ResponseEntity with status 200 (OK) and the list of jadwalSeminars in body
      */
     @GetMapping("/jadwal-seminars")
@@ -96,6 +96,12 @@ public class JadwalSeminarResource {
             log.debug("REST request to get all JadwalSeminars where seminar is null");
             return new ResponseEntity<>(jadwalSeminarService.findAllWhereSeminarIsNull(),
                     HttpStatus.OK);
+        } else if ("tersedia".equals(filter)) {
+            log.debug("REST request to get all jadwalSeminars where tersedia is true");
+            return new ResponseEntity<>(jadwalSeminarService.findAllWhereTersedia(), HttpStatus.OK);
+        } else if ("not-tersedia".equals(filter)) {
+            log.debug("REST request to get all jadwalSeminars where tersedia is false");
+            return new ResponseEntity<>(jadwalSeminarService.findAllWhereNotTersedia(), HttpStatus.OK);
         }
         log.debug("REST request to get a page of JadwalSeminars");
         Page<JadwalSeminarDTO> page = jadwalSeminarService.findAll(pageable);
