@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.seminar.reminder.title}">JHipster activation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="${baseUrl}/favicon.ico" />
+</head>
+<body>
+<p th:text="#{email.seminar.reminder.greeting(${user.login})}">
+    Dear
+</p>
+<p th:text="#{email.seminar.reminder.text1(${seminar.judul},${seminar.jamMulai})}">
+    Seminar titled {0} will start at {1}, please click on the URL below to see the detail:
+</p>
+<p>
+    <a th:href="@{|${baseUrl}/#/seminar/${seminar.id}|}"
+       th:text="@{|${baseUrl}/#/seminar/${seminar.id}|}">seminar detail</a>
+</p>
+<p>
+    <span th:text="#{email.seminar.reminder.text2}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">JHipster.</em>
+</p>
+</body>
+</html>

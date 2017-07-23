@@ -2,11 +2,12 @@ package io.github.semhas.service.impl;
 
 import io.github.semhas.domain.JadwalSeminar;
 import io.github.semhas.domain.PesertaSeminar;
-import io.github.semhas.domain.enumeration.StatusSeminar;
-import io.github.semhas.service.JadwalSeminarService;
-import io.github.semhas.service.SeminarService;
 import io.github.semhas.domain.Seminar;
+import io.github.semhas.domain.enumeration.StatusSeminar;
 import io.github.semhas.repository.SeminarRepository;
+import io.github.semhas.service.JadwalSeminarService;
+import io.github.semhas.service.MailService;
+import io.github.semhas.service.SeminarService;
 import io.github.semhas.service.dto.JadwalSeminarDTO;
 import io.github.semhas.service.dto.PesertaSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
@@ -16,9 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +43,14 @@ public class SeminarServiceImpl implements SeminarService{
 
     private final PesertaSeminarMapper pesertaSeminarMapper;
 
-    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService, PesertaSeminarMapper pesertaSeminarMapper) {
+    private final MailService mailService;
+
+    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService, PesertaSeminarMapper pesertaSeminarMapper, MailService mailService) {
         this.seminarRepository = seminarRepository;
         this.seminarMapper = seminarMapper;
         this.jadwalSeminarService = jadwalSeminarService;
         this.pesertaSeminarMapper = pesertaSeminarMapper;
+        this.mailService = mailService;
     }
 
     /**
@@ -163,5 +169,23 @@ public class SeminarServiceImpl implements SeminarService{
             return result;
         }
         return null;
+    }
+
+    /**
+     *
+     * <p>
+     * This is scheduled to get fired everyday, at 06:00 (am).
+     */
+    @Scheduled(cron = "0 0 6 * * ?")
+    public void sendSeminarReminderEmailNotification() {
+        ZonedDateTime now = ZonedDateTime.now();
+        List<Seminar> seminars = seminarRepository.findAllByJamMulaiBetween(now, now.plusMinutes(1439));
+        for (Seminar seminar : seminars) {
+            for (PesertaSeminar pesertaSeminar : seminar.getListPesertaSeminars()) {
+                if (pesertaSeminar.getMahasiswa() != null && pesertaSeminar.getMahasiswa().getUser() != null) {
+                    mailService.sendSeminarReminderNotificationEmail(pesertaSeminar.getMahasiswa().getUser(), seminar);
+                }
+            }
+        }
     }
 }

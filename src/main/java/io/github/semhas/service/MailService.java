@@ -1,9 +1,8 @@
 package io.github.semhas.service;
 
-import io.github.semhas.domain.User;
-
 import io.github.jhipster.config.JHipsterProperties;
-
+import io.github.semhas.domain.Seminar;
+import io.github.semhas.domain.User;
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,5 +100,18 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendSeminarReminderNotificationEmail(User user, Seminar seminar) {
+        log.debug("Sending seminar reminder email to '{}' for seminar {}", user.getEmail(), seminar.getId());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable("seminar", seminar);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process("seminarNotificationEmail", context);
+        String subject = messageSource.getMessage("email.seminar.reminder.title", null, locale);
+        sendEmail(user.getEmail(), subject, content, false, true);
     }
 }

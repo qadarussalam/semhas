@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 
 /**
  * Spring Data JPA repository for the Seminar entity.
@@ -24,4 +27,6 @@ public interface SeminarRepository extends JpaRepository<Seminar,Long> {
     Page<Seminar> findAllByStatusAndDosenPertamaIdOrDosenKeduaId(StatusSeminar status, Long dosenPertamaId, Long dosenKeduaId, Pageable pageable);
 
     Page<Seminar> findAllByDosenPertamaIdOrDosenKeduaId(Long dosenId, Long dosenId1, Pageable pageable);
+
+    List<Seminar> findAllByJamMulaiBetween(ZonedDateTime from, ZonedDateTime to);
 }
