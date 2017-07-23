@@ -20,8 +20,21 @@
                         <span class="hidden-sm" data-translate="global.menu.home">Home</span>
                     </a>
                 </li>
+                <li ng-class="{active: vm.$state.includes('my-seminar')}" ng-switch-when="true" has-authority="ROLE_MAHASISWA">
+                    <a ui-sref="my-seminar" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <span class="hidden-sm" data-translate="global.menu.mySeminar">My Seminar</span>
+                    </a>
+                </li>
+                <li ng-class="{active: vm.$state.includes('kps')}" ng-switch-when="true" has-authority="ROLE_MAHASISWA">
+                    <a ui-sref="kps" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-blackboard"></span>
+                        <span class="hidden-sm" data-translate="global.menu.kps">KPS</span>
+                    </a>
+                </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
+                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" 
+                        has-any-authority="ROLE_ADMIN, ROLE_ADMIN_RUANG" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
@@ -32,34 +45,22 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                                 <a ui-sref="jurusan" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                     <span data-translate="global.menu.entities.jurusan">Jurusan</span>
                                 </a>
                             </li>
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                                 <a ui-sref="mahasiswa" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                     <span data-translate="global.menu.entities.mahasiswa">Mahasiswa</span>
                                 </a>
                             </li>
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                                 <a ui-sref="dosen" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                     <span data-translate="global.menu.entities.dosen">Dosen</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="peserta-seminar" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.pesertaSeminar">Peserta Seminar</span>
-                                </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="seminar" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.seminar">Seminar</span>
                                 </a>
                             </li>
                         <li ui-sref-active="active">

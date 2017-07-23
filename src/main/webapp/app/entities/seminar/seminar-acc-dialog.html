@@ -1,0 +1,99 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySeminarLabel" data-translate="semhasApp.seminar.home.accSeminar">Create or edit a Seminar</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.judul" for="field_judul">Judul</label>
+            <input type="text" class="form-control" name="judul" id="field_judul"
+                    ng-model="vm.seminar.judul"
+                    disabled/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.nama" for="field_nama">Nama</label>
+            <input type="text" class="form-control" name="nama" id="field_nama"
+                    ng-model="vm.seminar.mahasiswa.nama"
+                    disabled/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.mahasiswa.nim" for="field_nim">Nim</label>
+            <input type="text" class="form-control" name="nim" id="field_nim"
+                    ng-model="vm.seminar.mahasiswa.nim"
+                    disabled/>
+        </div>
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.dosenPertama" for="field_dosenPertama">Dosen Pertama</label>
+            <select class="form-control" id="field_dosenPertama" name="dosenPertama" ng-model="vm.seminar.dosenPertamaId" ng-options="dosen.id as dosen.nama for dosen in vm.dosens" disabled>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="semhasApp.seminar.dosenKedua" for="field_dosenKedua">Dosen Kedua</label>
+            <select class="form-control" id="field_dosenKedua" name="dosenKedua" ng-model="vm.seminar.dosenKeduaId" ng-options="dosen.id as dosen.nama for dosen in vm.dosens" disabled>
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setFileAccSeminar($file, vm.seminar)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="semhasApp.seminar.fileAccSeminar" for="field_fileAccSeminar">File Acc Seminar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.seminar.fileAccSeminarContentType + ';base64,' + vm.seminar.fileAccSeminar}}"
+                    style="max-width: 100%; cursor: pointer" ng-if="vm.seminar.fileAccSeminar" alt="seminar image"
+                    ng-click="vm.openFile(vm.seminar.fileAccSeminarContentType, vm.seminar.fileAccSeminar)"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="semhasApp.seminar.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="vm.seminar.status" id="field_status">
+                <option value="MENUNGGU_PERSETUJUAN" data-translate="semhasApp.StatusSeminar.MENUNGGU_PERSETUJUAN">MENUNGGU_PERSETUJUAN</option>
+                <option value="DISETUJUI" data-translate="semhasApp.StatusSeminar.DISETUJUI">DISETUJUI</option>
+                <option value="BATAL" data-translate="semhasApp.StatusSeminar.BATAL">BATAL</option>
+            </select>
+        </div>
+
+        <div class="form-group" ng-if="vm.seminar.status == 'DISETUJUI'">
+            <label data-translate="semhasApp.seminar.jadwalSeminar" for="field_jadwalSeminar">Jadwal Seminar</label>
+            <select class="form-control" id="field_jadwalSeminar" name="jadwalSeminar" ng-model="jadwalSeminarOpt" 
+                ng-change="vm.selectJadwalSeminar(jadwalSeminarOpt)"
+                ng-options="jadwalSeminar as 
+                        'Tanggal ' +(jadwalSeminar.tanggal | date:'yyyy-MM-dd') + ' - Ruang ' + jadwalSeminar.ruangNama + ' - Sesi ' + jadwalSeminar.sesiUrutan
+                        for jadwalSeminar in vm.jadwalseminars | orderBy:'id'"
+                    required>
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-group" ng-if="vm.seminar.status == 'DISETUJUI'">
+            <label class="control-label" data-translate="semhasApp.seminar.jamMulai" for="field_jamMulai">Jam Mulai</label>
+                <div class="input-group">
+                    <input id="field_jamMulai" type="text" class="form-control" name="jamMulai" datetime-picker="HH:mm" ng-model="vm.seminar.jamMulai" enable-date="false" timepicker-options="{showMeridian:false}" is-open="vm.datePickerOpenStatus.jamMulai"
+                        disabled required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('jamMulai')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ng-if="vm.seminar.status == 'DISETUJUI'">
+            <label class="control-label" data-translate="semhasApp.seminar.jamSelesai" for="field_jamSelesai">Jam Selesai</label>
+                <div class="input-group">
+                    <input id="field_jamSelesai" type="text" class="form-control" name="jamSelesai" datetime-picker="HH:mm" ng-model="vm.seminar.jamSelesai" enable-date="false" timepicker-options="{showMeridian:false}" is-open="vm.datePickerOpenStatus.jamSelesai"
+                        disabled required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('jamSelesai')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || vm.seminar.status == 'MENUNGGU_PERSETUJUAN'" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

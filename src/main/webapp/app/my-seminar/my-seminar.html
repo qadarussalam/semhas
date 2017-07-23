@@ -1,0 +1,64 @@
+<div>
+    <h2 data-translate="semhasApp.mySeminar.home.title">My Seminars</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid" ng-show="vm.mySeminar == null">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="my-seminar.new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="semhasApp.mySeminar.home.createLabel">
+                        Create new Seminar
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="panel panel-primary" ng-show="vm.mySeminar != null">
+        <div class="panel-heading">
+            <h1 class="panel-title">Seminar Details</h1>
+        </div>
+        <div class="panel-body">
+            <h4>{{vm.mySeminar.judul}}</h4>
+            <br>
+            <dl class="dl-horizontal jh-entity-details">
+                <dt><span data-translate="semhasApp.mahasiswa.nama">Nama</span></dt>
+                <dd>
+                    <span>{{vm.mahasiswa.nama}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.mahasiswa.nim">Nim</span></dt>
+                <dd>
+                    <span>{{vm.mahasiswa.nim}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.dosenPertama">Dosen Pertama</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.dosenPertamaNama}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.dosenKedua">Dosen Kedua</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.dosenKeduaNama}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.jadwalSeminar">Jadwal Seminar</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.jadwalSeminarTanggal | date:'yyyy-MM-dd'}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.jamMulai">Jam Mulai</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.jamMulai | date:'HH:mm'}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.jamSelesai">Jam Selesai</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.jamSelesai | date:'HH:mm'}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.ruangan">Ruangan</span></dt>
+                <dd>
+                    <span>{{vm.mySeminar.ruangan}}</span>
+                </dd>
+                <dt><span data-translate="semhasApp.seminar.status">Status</span></dt>
+                <dd>
+                    <b><span data-translate="{{'semhasApp.StatusSeminar.' + vm.mySeminar.status}}">{{vm.mySeminar.status}}</span></b>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

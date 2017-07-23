@@ -1,0 +1,10 @@
+{
+    "semhasApp": {
+        "kps" : {
+            "home": {
+                "title": "My Following Seminar List"
+            },
+            "printKps": "Prints KPS"
+        }
+    }
+}

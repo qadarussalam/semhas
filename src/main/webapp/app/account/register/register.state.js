@@ -25,6 +25,8 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('register');
+                    $translatePartialLoader.addPart('user-management');
+                    $translatePartialLoader.addPart('mahasiswa');
                     return $translate.refresh();
                 }]
             }

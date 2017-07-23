@@ -29,8 +29,8 @@
                 <tr ng-repeat="sesi in vm.sesis track by sesi.id">
                     <td><a ui-sref="sesi-detail({id:sesi.id})">{{sesi.id}}</a></td>
                     <td>{{sesi.urutan}}</td>
-                    <td>{{sesi.jamMulai | date:'medium'}}</td>
-                    <td>{{sesi.jamSelesai | date:'medium'}}</td>
+                    <td>{{sesi.jamMulai | date:'HH:mm'}}</td>
+                    <td>{{sesi.jamSelesai | date:'HH:mm'}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

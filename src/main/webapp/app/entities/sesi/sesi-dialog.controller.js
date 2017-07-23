@@ -17,6 +17,11 @@
         vm.save = save;
         vm.jadwalseminars = JadwalSeminar.query();
 
+        if (vm.sesi.id == null) {
+            vm.sesi.jamMulai = new Date(0);
+            vm.sesi.jamSelesai = new Date(0);
+        }
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
