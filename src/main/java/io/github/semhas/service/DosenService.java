@@ -39,4 +39,6 @@ public interface DosenService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    DosenDTO findByUserLogin(String username);
 }

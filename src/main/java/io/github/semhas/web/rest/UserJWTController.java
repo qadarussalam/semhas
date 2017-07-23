@@ -2,6 +2,10 @@ package io.github.semhas.web.rest;
 
 import io.github.semhas.security.jwt.JWTConfigurer;
 import io.github.semhas.security.jwt.TokenProvider;
+import io.github.semhas.service.DosenService;
+import io.github.semhas.service.MahasiswaService;
+import io.github.semhas.service.dto.DosenDTO;
+import io.github.semhas.service.dto.MahasiswaDTO;
 import io.github.semhas.web.rest.vm.LoginVM;
 
 import com.codahale.metrics.annotation.Timed;
@@ -21,6 +25,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller to authenticate users.
@@ -35,9 +41,17 @@ public class UserJWTController {
 
     private final AuthenticationManager authenticationManager;
 
-    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager) {
+    private final MahasiswaService mahasiswaService;
+    private final DosenService dosenService;
+
+    private final String MAHASISWA_KEY = "semhas.mhsw";
+    private final String DOSEN_KEY = "semhas.dosn";
+
+    public UserJWTController(TokenProvider tokenProvider, AuthenticationManager authenticationManager, MahasiswaService mahasiswaService, DosenService dosenService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
+        this.mahasiswaService = mahasiswaService;
+        this.dosenService = dosenService;
     }
 
     @PostMapping("/authenticate")
@@ -51,7 +65,12 @@ public class UserJWTController {
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             boolean rememberMe = (loginVM.isRememberMe() == null) ? false : loginVM.isRememberMe();
-            String jwt = tokenProvider.createToken(authentication, rememberMe);
+            Map<String, Object> claims = new HashMap<>();
+            MahasiswaDTO mhs = mahasiswaService.findByUserLogin(loginVM.getUsername());
+            claims.put(MAHASISWA_KEY, mhs == null ? null: mhs.getId());
+            DosenDTO dosen = dosenService.findByUserLogin(loginVM.getUsername());
+            claims.put(DOSEN_KEY, dosen == null ? null : dosen.getId());
+            String jwt = tokenProvider.createToken(authentication, rememberMe, claims);
             response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
             return ResponseEntity.ok(new JWTToken(jwt));
         } catch (AuthenticationException ae) {

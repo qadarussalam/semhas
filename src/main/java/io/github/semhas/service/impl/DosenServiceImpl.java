@@ -83,4 +83,10 @@ public class DosenServiceImpl implements DosenService{
         log.debug("Request to delete Dosen : {}", id);
         dosenRepository.delete(id);
     }
+
+    @Override
+    public DosenDTO findByUserLogin(String username) {
+        Dosen d = dosenRepository.findOneByUserLogin(username);
+        return dosenMapper.toDto(d);
+    }
 }

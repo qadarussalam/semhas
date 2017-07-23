@@ -12,5 +12,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface MahasiswaRepository extends JpaRepository<Mahasiswa,Long> {
-    
+
+    Mahasiswa findOneByUserLogin(String username);
 }

@@ -130,4 +130,10 @@ public class MahasiswaServiceImpl implements MahasiswaService{
         mahasiswaRepository.save(mahasiswa);
         return user;
     }
+
+    @Override
+    public MahasiswaDTO findByUserLogin(String username) {
+        Mahasiswa m = mahasiswaRepository.findOneByUserLogin(username);
+        return mahasiswaMapper.toDto(m);
+    }
 }

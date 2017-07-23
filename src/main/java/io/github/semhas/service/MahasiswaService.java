@@ -49,4 +49,6 @@ public interface MahasiswaService {
     void delete(Long id);
 
     User createMahasiswaUser(String login, String password, String firstName, String lastName, String email, String imageUrl, String langKey, String nim, Integer semester, Long jurusanId, String nomorTelepon);
+
+    MahasiswaDTO findByUserLogin(String username);
 }
