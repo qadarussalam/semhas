@@ -129,7 +129,7 @@ public class SeminarResource {
         if (status != null) {
             if (dosenId == null) {
                 page = seminarService.findAllByStatus(status, pageable);
-                urlParams += "status=" + status.name();
+                urlParams += "status=" + status.name() + "&dosenId=";
             } else {
                 page = seminarService.findAllByStatusAndDosenId(status, dosenId, pageable);
                 urlParams += "status=" + status.name() + "&dosenId=" + dosenId;
@@ -137,9 +137,10 @@ public class SeminarResource {
         } else {
             if (dosenId != null) {
                 page = seminarService.findAllByDosenId(dosenId, pageable);
-                urlParams += "dosenId=" + dosenId;
+                urlParams += "dosenId=" + dosenId + "&status=";
             } else {
                 page = seminarService.findAll(pageable);
+                urlParams += "dosenId=" + "&status=";
             }
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars?" + urlParams);
