@@ -1,6 +1,7 @@
 package io.github.semhas.service;
 
 import io.github.semhas.domain.User;
+import io.github.semhas.service.dto.KpsDTO;
 import io.github.semhas.service.dto.MahasiswaDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import org.springframework.data.domain.Page;
@@ -54,4 +55,6 @@ public interface MahasiswaService {
     MahasiswaDTO findByUserLogin(String username);
 
     SeminarDTO findSeminarByMahasiswaId(Long id);
+
+    KpsDTO findKpsMahasiswa(Long id);
 }

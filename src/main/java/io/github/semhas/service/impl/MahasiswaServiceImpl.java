@@ -1,13 +1,14 @@
 package io.github.semhas.service.impl;
 
-import io.github.semhas.domain.Jurusan;
-import io.github.semhas.domain.User;
+import io.github.semhas.domain.*;
+import io.github.semhas.domain.enumeration.AbsensiSeminar;
 import io.github.semhas.repository.AuthorityRepository;
+import io.github.semhas.repository.MahasiswaRepository;
+import io.github.semhas.repository.PesertaSeminarRepository;
 import io.github.semhas.security.AuthoritiesConstants;
 import io.github.semhas.service.MahasiswaService;
-import io.github.semhas.domain.Mahasiswa;
-import io.github.semhas.repository.MahasiswaRepository;
 import io.github.semhas.service.UserService;
+import io.github.semhas.service.dto.KpsDTO;
 import io.github.semhas.service.dto.MahasiswaDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import io.github.semhas.service.mapper.MahasiswaMapper;
@@ -43,12 +44,15 @@ public class MahasiswaServiceImpl implements MahasiswaService{
 
     private final SeminarMapper seminarMapper;
 
-    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper, UserService userService, AuthorityRepository authorityRespository, SeminarMapper seminarMapper) {
+    private final PesertaSeminarRepository pesertaSeminarRepository;
+
+    public MahasiswaServiceImpl(MahasiswaRepository mahasiswaRepository, MahasiswaMapper mahasiswaMapper, UserService userService, AuthorityRepository authorityRespository, SeminarMapper seminarMapper, PesertaSeminarRepository pesertaSeminarRepository) {
         this.mahasiswaRepository = mahasiswaRepository;
         this.mahasiswaMapper = mahasiswaMapper;
         this.userService = userService;
         this.authorityRespository = authorityRespository;
         this.seminarMapper = seminarMapper;
+        this.pesertaSeminarRepository = pesertaSeminarRepository;
     }
 
     /**
@@ -149,5 +153,18 @@ public class MahasiswaServiceImpl implements MahasiswaService{
             return seminarMapper.toDto(one.getSeminar());
         }
         return null;
+    }
+
+    @Override
+    public KpsDTO findKpsMahasiswa(Long id) {
+        log.debug("Request to find kps of mahasiswa {}", id);
+        List<Seminar> seminars = pesertaSeminarRepository.findDistinctSeminarByMahasiswaIdAndAbsensi(id, AbsensiSeminar.HADIR);
+        KpsDTO kps = new KpsDTO();
+        for (Seminar seminar : seminars) {
+            kps.getSeminars().add(seminarMapper.toDto(seminar));
+        }
+        Mahasiswa mahasiswa = mahasiswaRepository.findOne(id);
+        kps.setMahasiswa(mahasiswaMapper.toDto(mahasiswa));
+        return kps;
     }
 }
