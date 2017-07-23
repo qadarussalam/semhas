@@ -109,11 +109,15 @@ public class AccountResource {
             .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
                 .map(user -> new ResponseEntity<>("email address already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
+                    String langKey = managedUserVM.getLangKey();
+                    if (langKey == null || langKey.isEmpty()) {
+                        langKey = "en"; // default language
+                    }
                     User user = mahasiswaService
                         .createMahasiswaUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
                             managedUserVM.getFirstName(), managedUserVM.getLastName(),
                             managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(),
-                            managedUserVM.getLangKey(),managedUserVM.getNim(),managedUserVM.getSemester(),managedUserVM.getJurusanId(),managedUserVM.getNomorTelepon());
+                            langKey, managedUserVM.getNim(),managedUserVM.getSemester(),managedUserVM.getJurusanId(),managedUserVM.getNomorTelepon());
 
                     mailService.sendActivationEmail(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);
