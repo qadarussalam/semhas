@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/sesi?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG'],
                 pageTitle: 'semhasApp.sesi.home.title'
             },
             views: {
@@ -55,7 +55,7 @@
             parent: 'sesi',
             url: '/sesi/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG'],
                 pageTitle: 'semhasApp.sesi.detail.title'
             },
             views: {
@@ -87,7 +87,7 @@
             parent: 'sesi-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -112,7 +112,7 @@
             parent: 'sesi',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -142,7 +142,7 @@
             parent: 'sesi',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -167,7 +167,7 @@
             parent: 'sesi',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN', 'ROLE_ADMIN_RUANG']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

@@ -13,7 +13,9 @@
         vm.dosen = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.users = User.query();
+        vm.users = User.query({
+            role: 'ROLE_DOSEN'
+        });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

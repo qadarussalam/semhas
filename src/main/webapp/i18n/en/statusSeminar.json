@@ -2,7 +2,7 @@
     "semhasApp": {
         "StatusSeminar" : {
             "null": "",
-            "MENUNGGU_PERSETUJUAN": "MENUNGGU_PERSETUJUAN",
+            "MENUNGGU_PERSETUJUAN": "MENUNGGU PERSETUJUAN",
             "DISETUJUI": "DISETUJUI",
             "BATAL": "BATAL"
         }

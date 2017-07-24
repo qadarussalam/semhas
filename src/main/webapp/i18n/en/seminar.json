@@ -4,7 +4,8 @@
             "home": {
                 "title": "Seminars",
                 "createLabel": "Create a new Seminar",
-                "createOrEditLabel": "Create or edit a Seminar"
+                "createOrEditLabel": "Create or edit a Seminar",
+                "accSeminar": "ACC Seminar"
             },
             "created": "A new Seminar is created with identifier {{ param }}",
             "updated": "A Seminar is updated with identifier {{ param }}",
@@ -23,10 +24,14 @@
             "jamSelesai": "Jam Selesai",
             "status": "Status",
             "mahasiswa": "Mahasiswa",
+            "tanggal": "Tanggal",
+            "jam": "Jam",
             "jadwalSeminar": "Jadwal Seminar",
             "dosenPertama": "Dosen Pertama",
             "dosenKedua": "Dosen Kedua",
-            "listPesertaSeminar": "List Peserta Seminar"
+            "listPesertaSeminar": "List Peserta Seminar",
+            "join": "JOIN",
+            "acc": "ACC"
         }
     }
 }

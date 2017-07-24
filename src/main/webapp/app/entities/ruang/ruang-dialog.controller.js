@@ -13,7 +13,9 @@
         vm.ruang = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.users = User.query();
+        vm.users = User.query({
+            role: 'ROLE_ADMIN_RUANG'
+        });
         vm.jadwalseminars = JadwalSeminar.query();
 
         $timeout(function (){

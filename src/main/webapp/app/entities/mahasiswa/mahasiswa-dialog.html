@@ -88,16 +88,9 @@
                 </button>
             </div>
             <input type="hidden" class="form-control" name="foto" id="field_foto"
-                    ng-model="vm.mahasiswa.foto"
-                    required/>
+                    ng-model="vm.mahasiswa.foto"/>
             <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
                     ng-model="vm.mahasiswa.fotoContentType" />
-            <div ng-show="editForm.foto.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.foto.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
         </div>
 
         <div class="form-group">

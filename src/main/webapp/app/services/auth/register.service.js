@@ -8,6 +8,13 @@
     Register.$inject = ['$resource'];
 
     function Register ($resource) {
-        return $resource('api/register', {}, {});
+        var service = $resource('api/register', {}, {
+            'registerMahasiswa': {
+                url: 'api/register/mahasiswa',
+                method: 'POST'
+            }
+        });
+
+        return service;
     }
 })();

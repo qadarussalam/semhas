@@ -1,0 +1,24 @@
+{
+    "semhasApp": {
+        "mySeminar" : {
+            "home": {
+                "title": "My Seminar",
+                "createLabel": "Create a new Seminar"
+            },
+            "created": "A new Seminar is created with identifier {{ param }}",
+            "updated": "A Seminar is updated with identifier {{ param }}",
+            "deleted": "A Seminar is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Seminar {{ id }}?"
+            },
+            "detail": {
+                "title": "Seminar"
+            },
+            "nama": "Nama",
+            "nip": "Nip",
+            "email": "Email",
+            "nomorTelepon": "Nomor Telepon",
+            "user": "User"
+        }
+    }
+}

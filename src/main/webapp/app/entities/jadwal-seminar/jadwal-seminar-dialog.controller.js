@@ -17,7 +17,7 @@
         vm.save = save;
         vm.sesis = Sesi.query();
         vm.ruangs = Ruang.query();
-        vm.seminars = Seminar.query();
+        //vm.seminars = Seminar.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

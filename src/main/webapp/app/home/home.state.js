@@ -24,6 +24,9 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
                     $translatePartialLoader.addPart('home');
+                    $translatePartialLoader.addPart('seminar');
+                    $translatePartialLoader.addPart('mahasiswa');
+                    $translatePartialLoader.addPart('statusSeminar');
                     return $translate.refresh();
                 }]
             }
