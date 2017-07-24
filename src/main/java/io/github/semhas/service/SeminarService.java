@@ -5,6 +5,7 @@ import io.github.semhas.service.dto.PesertaSeminarDTO;
 import io.github.semhas.service.dto.SeminarDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
@@ -53,4 +54,7 @@ public interface SeminarService {
     Page<SeminarDTO> findAllByDosenId(Long dosenId, Pageable pageable);
 
     List<PesertaSeminarDTO> findPesertaSeminar(Long id);
+
+    @Scheduled(cron = "0 14 21 * * ?")
+    void sendSeminarReminderEmailNotification();
 }
