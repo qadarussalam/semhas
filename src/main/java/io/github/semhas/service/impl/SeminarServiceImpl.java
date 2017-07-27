@@ -176,7 +176,7 @@ public class SeminarServiceImpl implements SeminarService{
      * <p>
      * This is scheduled to get fired everyday, at 06:00 (am).
      */
-    @Scheduled(cron = "0 14 21 * * ?")
+    @Scheduled(cron = "0 0 6 * * ?")
     @Override
     public void sendSeminarReminderEmailNotification() {
         ZonedDateTime now = ZonedDateTime.now();
