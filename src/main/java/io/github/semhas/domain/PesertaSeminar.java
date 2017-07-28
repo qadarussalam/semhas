@@ -1,15 +1,12 @@
 package io.github.semhas.domain;
 
+import io.github.semhas.domain.enumeration.AbsensiSeminar;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import io.github.semhas.domain.enumeration.AbsensiSeminar;
 
 /**
  * A PesertaSeminar.
@@ -22,7 +19,7 @@ public class PesertaSeminar implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Enumerated(EnumType.STRING)

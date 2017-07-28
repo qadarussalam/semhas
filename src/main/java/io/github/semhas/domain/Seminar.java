@@ -1,18 +1,17 @@
 package io.github.semhas.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.semhas.domain.enumeration.StatusSeminar;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import io.github.semhas.domain.enumeration.StatusSeminar;
+import java.util.Set;
 
 /**
  * A Seminar.
@@ -25,7 +24,7 @@ public class Seminar implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
