@@ -13,8 +13,8 @@
     Seminar titled {0} will start at {1}, please click on the URL below to see the detail:
 </p>
 <p>
-    <a th:href="@{|${baseUrl}/#/seminar/${seminar.id}|}"
-       th:text="@{|${baseUrl}/#/seminar/${seminar.id}|}">seminar detail</a>
+    <a th:href="|${baseUrl}/#/seminar/${seminar.id}|"
+       th:text="|${baseUrl}/#/seminar/${seminar.id}|">seminar detail</a>
 </p>
 <p>
     <span th:text="#{email.seminar.reminder.text2}">Regards, </span>
