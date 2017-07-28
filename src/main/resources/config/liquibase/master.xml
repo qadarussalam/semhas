@@ -23,4 +23,5 @@
     <include file="classpath:config/liquibase/changelog/20170717232321_added_entity_constraints_Ruang.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="classpath:config/liquibase/changelog/loaddata_jurusan.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/add_hibernate_sequence.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
