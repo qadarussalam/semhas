@@ -30,4 +30,4 @@ spring:
 
 jhipster:
     mail:
-        base-url: https//semhas.herokuapp.com
+        base-url: https://semhas.herokuapp.com
