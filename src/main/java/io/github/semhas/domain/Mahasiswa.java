@@ -45,10 +45,10 @@ public class Mahasiswa implements Serializable {
     private String nomorTelepon;
 
     @Lob
-    @Column(name = "foto", nullable = false)
+    @Column(name = "foto", nullable = true)
     private byte[] foto;
 
-    @Column(name = "foto_content_type", nullable = false)
+    @Column(name = "foto_content_type", nullable = true)
     private String fotoContentType;
 
     @OneToOne
