@@ -31,7 +31,7 @@ spring:
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
     jpa:
-        database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+        database-platform: io.github.semhas.domain.util.FixedPostgreSQL95Dialect
         database: POSTGRESQL
         show-sql: false
         properties:
