@@ -26,7 +26,7 @@ public class JadwalSeminar implements Serializable {
     @Column(name = "tanggal")
     private ZonedDateTime tanggal;
 
-    @Column(name = "tersedia")
+    @Column(name = "tersedia", columnDefinition = "TINYINT", length = 1)
     private Boolean tersedia;
 
     @ManyToOne
