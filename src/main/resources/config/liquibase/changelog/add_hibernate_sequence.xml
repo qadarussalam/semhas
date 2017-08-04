@@ -11,7 +11,7 @@
 
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle,mssql"/>
 
-    <changeSet id="1" author="addin" dbms="postgresql,oracle">
+    <changeSet id="1" author="addin" dbms="postgresql,oracle,h2">
         <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="1"/>
     </changeSet>
 </databaseChangeLog>
