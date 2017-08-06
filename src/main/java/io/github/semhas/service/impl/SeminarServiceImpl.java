@@ -189,4 +189,11 @@ public class SeminarServiceImpl implements SeminarService{
             }
         }
     }
+
+    @Override
+    public Page<SeminarDTO> searchByJudulAndUserNotRegistered(String query, Long idMahasiswa, Pageable pageable) {
+        log.debug("Request to search Seminar by judul like {} and not registered by {}", query, idMahasiswa);
+        return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaIdNot(query, idMahasiswa, pageable)
+            .map(seminarMapper::toDto);
+    }
 }

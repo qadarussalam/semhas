@@ -29,4 +29,6 @@ public interface SeminarRepository extends JpaRepository<Seminar,Long> {
     Page<Seminar> findAllByDosenPertamaIdOrDosenKeduaId(Long dosenId, Long dosenId1, Pageable pageable);
 
     List<Seminar> findAllByJamMulaiBetween(ZonedDateTime from, ZonedDateTime to);
+
+    Page<Seminar> findAllByJudulContainsAndListPesertaSeminarsMahasiswaIdNot(String query, Long idMahasiswa, Pageable pageable);
 }

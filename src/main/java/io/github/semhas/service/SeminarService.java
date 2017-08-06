@@ -57,4 +57,6 @@ public interface SeminarService {
 
     @Scheduled(cron = "0 14 21 * * ?")
     void sendSeminarReminderEmailNotification();
+
+    Page<SeminarDTO> searchByJudulAndUserNotRegistered(String query, Long idMahasiswa, Pageable pageable);
 }
