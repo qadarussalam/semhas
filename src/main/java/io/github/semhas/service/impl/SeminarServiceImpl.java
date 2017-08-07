@@ -200,4 +200,20 @@ public class SeminarServiceImpl implements SeminarService{
         return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaNot(query, mahasiswa, pageable)
             .map(seminarMapper::toDto);
     }
+
+    @Override
+    public Page<SeminarDTO> searchByJudulAndStatus(String query, StatusSeminar status, Pageable pageable) {
+        log.debug("Request to search Seminar by judul like {} and status {}", query, status);
+        return seminarRepository.findAllByJudulContainsAndStatus(query, status, pageable)
+            .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public Page<SeminarDTO> searchByJudulAndUserNotRegisteredAndStatus(String query, Long idMahasiswa, StatusSeminar status, Pageable pageable) {
+        log.debug("Request to search Seminar by judul like {} and not registered by {} and status {}", query, idMahasiswa, status);
+        Mahasiswa mahasiswa = new Mahasiswa(idMahasiswa);
+        query = "%" + query + "%";
+        return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaNotAndStatus(query, mahasiswa, status, pageable)
+            .map(seminarMapper::toDto);
+    }
 }

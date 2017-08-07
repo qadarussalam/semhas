@@ -33,4 +33,9 @@ public interface SeminarRepository extends JpaRepository<Seminar,Long> {
 
     @Query("select s from Seminar s where s.judul like ?1 and not exists(from PesertaSeminar ps where ps.seminar = s and ps.mahasiswa = ?2)")
     Page<Seminar> findAllByJudulContainsAndListPesertaSeminarsMahasiswaNot(String query, Mahasiswa mahasiswa, Pageable pageable);
+
+    Page<Seminar> findAllByJudulContainsAndStatus(String query, StatusSeminar status, Pageable pageable);
+
+    @Query("select s from Seminar s where s.judul like ?1 and not exists(from PesertaSeminar ps where ps.seminar = s and ps.mahasiswa = ?2) and s.status = ?3")
+    Page<Seminar> findAllByJudulContainsAndListPesertaSeminarsMahasiswaNotAndStatus(String query, Mahasiswa mahasiswa, StatusSeminar status, Pageable pageable);
 }

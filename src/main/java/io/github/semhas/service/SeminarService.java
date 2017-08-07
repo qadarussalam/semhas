@@ -59,4 +59,8 @@ public interface SeminarService {
     void sendSeminarReminderEmailNotification();
 
     Page<SeminarDTO> searchByJudulAndUserNotRegistered(String query, Long idMahasiswa, Pageable pageable);
+
+    Page<SeminarDTO> searchByJudulAndStatus(String query, StatusSeminar status, Pageable pageable);
+
+    Page<SeminarDTO> searchByJudulAndUserNotRegisteredAndStatus(String query, Long idMahasiswa, StatusSeminar status, Pageable pageable);
 }

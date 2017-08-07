@@ -115,15 +115,28 @@ public class SeminarResource {
     @Timed
     public ResponseEntity<List<SeminarDTO>> searchSeminar(@RequestParam(value = "q", required = true) String query,
                                                           @RequestParam(value = "not-registered-by", required = false) Long idMahasiswa,
+                                                          @RequestParam(value = "status", required = false) StatusSeminar status,
                                                           @ApiParam Pageable pageable) {
         log.debug("REST request to search Seminar with keyword : {} and not-registered-by {}", query, idMahasiswa);
         Page<SeminarDTO> page;
         String queryParam = "?q=" + query;
         if (idMahasiswa == null) {
-            page = seminarService.searchByJudul(query, pageable);
+            if (status != null) {
+                page = seminarService.searchByJudulAndStatus(query, status, pageable);
+                queryParam += "&status=" + status.name();
+            } else {
+                page = seminarService.searchByJudul(query, pageable);
+            }
         } else {
-            page = seminarService.searchByJudulAndUserNotRegistered(query, idMahasiswa, pageable);
+
             queryParam += "&not-registered-by=" + idMahasiswa;
+
+            if (status != null) {
+                page = seminarService.searchByJudulAndUserNotRegisteredAndStatus(query, idMahasiswa, status, pageable);
+                queryParam += "&status=" + status.name();
+            } else {
+                page = seminarService.searchByJudulAndUserNotRegistered(query, idMahasiswa, pageable);
+            }
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/seminars" + queryParam);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
