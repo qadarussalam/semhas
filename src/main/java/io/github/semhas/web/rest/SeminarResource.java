@@ -111,7 +111,7 @@ public class SeminarResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping(value = "/seminars", params = {"q","not-registered-by"})
+    @GetMapping(value = "/seminars", params = {"q"})
     @Timed
     public ResponseEntity<List<SeminarDTO>> searchSeminar(@RequestParam(value = "q", required = true) String query,
                                                           @RequestParam(value = "not-registered-by", required = false) Long idMahasiswa,

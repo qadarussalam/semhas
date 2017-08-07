@@ -67,6 +67,13 @@ public class Mahasiswa implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PesertaSeminar> listPesertaSeminars = new HashSet<>();
 
+    public Mahasiswa(Long id) {
+        this.id = id;
+    }
+
+    public Mahasiswa() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package io.github.semhas.service.impl;
 
 import io.github.semhas.domain.JadwalSeminar;
+import io.github.semhas.domain.Mahasiswa;
 import io.github.semhas.domain.PesertaSeminar;
 import io.github.semhas.domain.Seminar;
 import io.github.semhas.domain.enumeration.StatusSeminar;
@@ -190,10 +191,13 @@ public class SeminarServiceImpl implements SeminarService{
         }
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Page<SeminarDTO> searchByJudulAndUserNotRegistered(String query, Long idMahasiswa, Pageable pageable) {
         log.debug("Request to search Seminar by judul like {} and not registered by {}", query, idMahasiswa);
-        return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaIdNot(query, idMahasiswa, pageable)
+        Mahasiswa mahasiswa = new Mahasiswa(idMahasiswa);
+        query = "%" + query + "%";
+        return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaNot(query, mahasiswa, pageable)
             .map(seminarMapper::toDto);
     }
 }

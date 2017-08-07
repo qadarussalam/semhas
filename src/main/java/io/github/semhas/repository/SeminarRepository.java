@@ -1,5 +1,6 @@
 package io.github.semhas.repository;
 
+import io.github.semhas.domain.Mahasiswa;
 import io.github.semhas.domain.Seminar;
 import io.github.semhas.domain.enumeration.StatusSeminar;
 import org.springframework.data.domain.Page;
@@ -30,5 +31,6 @@ public interface SeminarRepository extends JpaRepository<Seminar,Long> {
 
     List<Seminar> findAllByJamMulaiBetween(ZonedDateTime from, ZonedDateTime to);
 
-    Page<Seminar> findAllByJudulContainsAndListPesertaSeminarsMahasiswaIdNot(String query, Long idMahasiswa, Pageable pageable);
+    @Query("select s from Seminar s where s.judul like ?1 and not exists(from PesertaSeminar ps where ps.seminar = s and ps.mahasiswa = ?2)")
+    Page<Seminar> findAllByJudulContainsAndListPesertaSeminarsMahasiswaNot(String query, Mahasiswa mahasiswa, Pageable pageable);
 }
