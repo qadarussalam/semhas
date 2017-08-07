@@ -4,7 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="peserta-seminar.export" >
+                <button class="btn btn-primary" ui-sref="peserta-seminar.export" 
+                        ng-if="vm.seminars.length >= 10">
                     <span class="glyphicon glyphicon-print"></span>
                     <span  data-translate="semhasApp.kps.printKps">
                         Print KPS
@@ -33,7 +34,7 @@
                     <div class="form-group" style="margin: 0">
                         <label class="col-sm-4 control-label"><span data-translate="semhasApp.mahasiswa.nama">Nama</span></label>
                         <div class="col-sm-8">
-                            <p class="form-control-static">{{seminar.mahasiswa.nama}}</p>
+                            <p class="form-control-static">{{seminar.mahasiswaNama}}</p>
                         </div>
                     </div>
                     <div class="form-group" style="margin: 0">

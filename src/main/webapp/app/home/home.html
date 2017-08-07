@@ -1,76 +1,80 @@
 <div ng-cloak ng-switch="vm.isAuthenticated()">
-    <div ng-switch-when="false">
-        HOME PAGE
+    <div ng-switch-when="false" class="text-center">
+        <br>
+        <h1>Selamat Datang di Aplikasi Seminar Mahasiswa</h1>
+        <br>
+        <h4>Silahkan melakukan <a href="" ng-click="vm.login()">login</a></h4>
+        <br>
     </div>
     <div ng-switch-when="true">
-        <h2 data-translate="home.title">Available Seminar</h2>
-        <jhi-alert></jhi-alert>
-        <!-- <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-4 no-padding-left">
-                    <button class="btn btn-primary" ui-sref="peserta-seminar.export" >
-                        <span class="glyphicon glyphicon-print"></span>
-                        <span  data-translate="semhasApp.kps.printKps">
-                            Print KPS
-                        </span>
+        <div class="text-center" ng-if="vm.role == null">
+            <h1>Selamat Datang {{vm.account.firstName}}</h1>
+        </div>
+
+        <div ng-if="vm.role">
+            <h2 data-translate="home.title">Available Seminar</h2>
+            <br/>
+            <div class="row" 
+                    style="border: 1px solid #ddd; border-radius: 5px; margin: 10px 7px; padding: 10px;" 
+                    ng-repeat="seminar in vm.seminars">
+                <div class="col-sm-3" style="padding: 7px; text-align: center;">
+                    <img data-ng-src="{{'data:' + seminar.mahasiswa.fotoContentType + ';base64,' + seminar.mahasiswa.foto}}" 
+                        style="display: block; margin: auto; max-height: 150px;" 
+                        ng-if="seminar.mahasiswa.foto" alt="mahasiswa image"/>
+
+                    <img src="../content/images/no-profile.png" 
+                        style="display: block; margin: auto; max-height: 150px;" 
+                        ng-if="!seminar.mahasiswa.foto"/>
+                </div>
+                <div class="col-sm-6">
+                    <h4>{{seminar.judul}}</h4>
+                    <div class="form-horizontal">
+                        <div class="form-group" style="margin: 0">
+                            <label class="col-sm-4 control-label"><span data-translate="semhasApp.mahasiswa.nama">Nama</span></label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">{{seminar.mahasiswa.nama}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin: 0">
+                            <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.tanggal">Tanggal</span></label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">{{seminar.jadwalSeminarTanggal | date:'yyyy-MM-dd'}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin: 0">
+                            <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.jam">Jam</span></label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">{{seminar.jamMulai | date:'HH:mm'}} - {{seminar.jamSelesai | date:'HH:mm'}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin: 0">
+                            <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.ruangan">Ruangan</span></label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static">{{seminar.ruangan}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <button type="button" class="btn btn-primary"
+                            style="display: block; margin: 30% auto;"
+                            ng-click="vm.openSeminarJoinDialog(seminar)"
+                            ng-hide="vm.mahasiswaId == seminar.mahasiswa.id || vm.role != 'ROLE_MAHASISWA'">
+                        <span data-translate="semhasApp.seminar.join">JOIN</span>
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            style="display: block; margin: 30% auto;"
+                            ng-click="vm.openSeminarAccDialog(seminar)"
+                            ng-hide="vm.role != 'ROLE_PRODI'">
+                        <span data-translate="semhasApp.seminar.acc">ACC</span>
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            style="display: block; margin: 30% auto;"
+                            ng-click="vm.openSeminarPesertaDialog(seminar)"
+                            ng-hide="vm.role != 'ROLE_DOSEN'">
+                        <span data-translate="semhasApp.seminar.peserta">Peserta Seminar</span>
                     </button>
                 </div>
-            </div>
-        </div> -->
-        <br/>
-        <div class="row" 
-                style="border: 1px solid #ddd; border-radius: 5px; margin: 10px 7px; padding: 10px;" 
-                ng-repeat="seminar in vm.seminars">
-            <div class="col-sm-3" style="padding: 7px; text-align: center;">
-                <img data-ng-src="{{'data:' + seminar.mahasiswa.fotoContentType + ';base64,' + seminar.mahasiswa.foto}}" 
-                    style="display: block; margin: auto; max-height: 150px;" 
-                    ng-if="seminar.mahasiswa.foto" alt="mahasiswa image"/>
-
-                <img src="../content/images/no-profile.png" 
-                    style="display: block; margin: auto; max-height: 150px;" 
-                    ng-if="!seminar.mahasiswa.foto"/>
-            </div>
-            <div class="col-sm-7">
-                <h4>{{seminar.judul}}</h4>
-                <div class="form-horizontal">
-                    <div class="form-group" style="margin: 0">
-                        <label class="col-sm-4 control-label"><span data-translate="semhasApp.mahasiswa.nama">Nama</span></label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static">{{seminar.mahasiswa.nama}}</p>
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin: 0">
-                        <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.tanggal">Tanggal</span></label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static">{{seminar.jadwalSeminarTanggal | date:'yyyy-MM-dd'}}</p>
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin: 0">
-                        <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.jam">Jam</span></label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static">{{seminar.jamMulai | date:'HH:mm'}} - {{seminar.jamSelesai | date:'HH:mm'}}</p>
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin: 0">
-                        <label class="col-sm-4 control-label"><span data-translate="semhasApp.seminar.ruangan">Ruangan</span></label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static">{{seminar.ruangan}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-primary"
-                        style="display: block; margin: 75% 0;"
-                        ng-hide="vm.mahasiswaId == seminar.mahasiswa.id || vm.role != 'ROLE_MAHASISWA'">
-                    <span data-translate="semhasApp.seminar.join">JOIN</span>
-                </button>
-                <button type="button" class="btn btn-primary"
-                        style="display: block; margin: 75% 0;"
-                        ng-click="vm.openSeminarAccDialog(seminar)"
-                        ng-hide="vm.role != 'ROLE_PRODI'">
-                    <span data-translate="semhasApp.seminar.acc">ACC</span>
-                </button>
             </div>
         </div>
     </div>

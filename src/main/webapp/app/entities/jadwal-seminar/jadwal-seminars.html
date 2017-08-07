@@ -29,8 +29,13 @@
             <tbody>
                 <tr ng-repeat="jadwalSeminar in vm.jadwalSeminars track by jadwalSeminar.id">
                     <td><a ui-sref="jadwal-seminar-detail({id:jadwalSeminar.id})">{{jadwalSeminar.id}}</a></td>
-                    <td>{{jadwalSeminar.tanggal | date:'medium'}}</td>
-                    <td>{{jadwalSeminar.tersedia}}</td>
+                    <td>{{jadwalSeminar.tanggal | date:'dd MMMM yyyy'}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-xs" ng-click="vm.setActive(jadwalSeminar, true)" ng-show="!jadwalSeminar.tersedia"
+                                data-translate="semhasApp.jadwalSeminar.tidakTersedia">Tidak Tersedia</button>
+                        <button class="btn btn-success btn-xs" ng-click="vm.setActive(jadwalSeminar, false)" ng-show="jadwalSeminar.tersedia"
+                                data-translate="semhasApp.jadwalSeminar.tersedia">Tersedia</button>
+                    </td>
                     <td>
                         <a ui-sref="sesi-detail({id:jadwalSeminar.sesiId})">{{jadwalSeminar.sesiUrutan}}</a>
                     </td>

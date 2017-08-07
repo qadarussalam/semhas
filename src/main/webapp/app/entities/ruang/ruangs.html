@@ -21,7 +21,6 @@
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nama"><span data-translate="semhasApp.ruang.nama">Nama</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="kapasitas"><span data-translate="semhasApp.ruang.kapasitas">Kapasitas</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="picLogin"><span data-translate="semhasApp.ruang.pic">Pic</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,9 +29,6 @@
                     <td><a ui-sref="ruang-detail({id:ruang.id})">{{ruang.id}}</a></td>
                     <td>{{ruang.nama}}</td>
                     <td>{{ruang.kapasitas}}</td>
-                    <td>
-                        {{ruang.picLogin}}
-                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

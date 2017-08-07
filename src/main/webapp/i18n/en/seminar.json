@@ -5,7 +5,8 @@
                 "title": "Seminars",
                 "createLabel": "Create a new Seminar",
                 "createOrEditLabel": "Create or edit a Seminar",
-                "accSeminar": "ACC Seminar"
+                "accSeminar": "ACC Seminar",
+                "joinSeminar": "Join Seminar"
             },
             "created": "A new Seminar is created with identifier {{ param }}",
             "updated": "A Seminar is updated with identifier {{ param }}",
@@ -31,7 +32,9 @@
             "dosenKedua": "Dosen Kedua",
             "listPesertaSeminar": "List Peserta Seminar",
             "join": "JOIN",
-            "acc": "ACC"
+            "acc": "ACC",
+            "peserta": "Peserta Seminar",
+            "joinQuestion": "Are you sure you want to join Seminar {{ id }}?"
         }
     }
 }

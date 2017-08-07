@@ -27,6 +27,8 @@
                     $translatePartialLoader.addPart('seminar');
                     $translatePartialLoader.addPart('mahasiswa');
                     $translatePartialLoader.addPart('statusSeminar');
+                    $translatePartialLoader.addPart('pesertaSeminar');
+                    $translatePartialLoader.addPart('absensiSeminar');
                     return $translate.refresh();
                 }]
             }
