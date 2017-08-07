@@ -17,6 +17,7 @@
             },
             "tanggal": "Tanggal",
             "tersedia": "Tersedia",
+            "tidakTersedia": "Tidak Tersedia",
             "sesi": "Sesi",
             "ruang": "Ruang",
             "seminar": "Seminar"

@@ -12,6 +12,7 @@
         var vm = this;
 
         vm.loadPage = loadPage;
+        vm.setActive = setActive;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
         vm.transition = transition;
@@ -54,6 +55,13 @@
                 page: vm.page,
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
                 search: vm.currentSearch
+            });
+        }
+
+        function setActive (jadwalSeminar, isActivated) {
+            jadwalSeminar.tersedia = isActivated;
+            JadwalSeminar.update(jadwalSeminar, function () {
+                loadAll();
             });
         }
     }

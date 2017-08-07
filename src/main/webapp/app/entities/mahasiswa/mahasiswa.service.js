@@ -30,6 +30,16 @@
                     }
                     return data;
                 }
+            },
+            'getKps': {
+                url: 'api/mahasiswas/:id/kps',
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
             }
         });
     }

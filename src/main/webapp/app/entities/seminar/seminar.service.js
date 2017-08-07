@@ -22,7 +22,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getPeserta': {
+                url: 'api/seminars/:id/pesertas',
+                method: 'GET',
+                isArray: true
+            }
         });
     }
 })();
