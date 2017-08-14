@@ -1,14 +1,13 @@
 package io.github.semhas.service.dto;
 
 
-import java.time.ZonedDateTime;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
-import javax.persistence.Lob;
 import io.github.semhas.domain.enumeration.StatusSeminar;
+
+import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * A DTO for the Seminar entity.
@@ -40,6 +39,8 @@ public class SeminarDTO implements Serializable {
     private Long mahasiswaId;
 
     private String mahasiswaNama;
+
+    private String mahasiswaNim;
 
     private Long jadwalSeminarId;
 
@@ -222,5 +223,13 @@ public class SeminarDTO implements Serializable {
             ", jamSelesai='" + getJamSelesai() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
+    }
+
+    public String getMahasiswaNim() {
+        return mahasiswaNim;
+    }
+
+    public void setMahasiswaNim(String mahasiswaNim) {
+        this.mahasiswaNim = mahasiswaNim;
     }
 }
