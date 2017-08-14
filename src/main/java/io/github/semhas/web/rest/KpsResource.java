@@ -42,7 +42,7 @@ public class KpsResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(kps));
     }
 
-    @GetMapping(value = "/mahasiswas/{id}/kps/print", produces = {MediaType.TEXT_HTML_VALUE})
+    @GetMapping(value = "/mahasiswas/{id}/kps/printable", produces = {MediaType.TEXT_HTML_VALUE})
     @Timed
     public ResponseEntity<String> printKpsMahasiswa(@PathVariable Long id) {
         log.debug("REST request to get printable kps of mahasiswa {}", id);
