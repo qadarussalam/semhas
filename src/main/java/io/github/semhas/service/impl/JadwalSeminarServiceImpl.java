@@ -1,8 +1,8 @@
 package io.github.semhas.service.impl;
 
-import io.github.semhas.service.JadwalSeminarService;
 import io.github.semhas.domain.JadwalSeminar;
 import io.github.semhas.repository.JadwalSeminarRepository;
+import io.github.semhas.service.JadwalSeminarService;
 import io.github.semhas.service.dto.JadwalSeminarDTO;
 import io.github.semhas.service.mapper.JadwalSeminarMapper;
 import org.slf4j.Logger;
@@ -108,7 +108,7 @@ public class JadwalSeminarServiceImpl implements JadwalSeminarService{
         log.debug("Request to get all jadwalSeminars where tersedia is true");
         return StreamSupport
             .stream(jadwalSeminarRepository.findAll().spliterator(), false)
-            .filter(jadwalSeminar -> jadwalSeminar.isTersedia())
+            .filter(jadwalSeminar -> jadwalSeminar.isTersedia() != null && jadwalSeminar.isTersedia())
             .map(jadwalSeminarMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }
