@@ -46,7 +46,8 @@
 
                 Seminar.query({
                     q: '',
-                    'not-registered-by': vm.mahasiswaId
+                    'not-registered-by': vm.mahasiswaId,
+                    status: 'DISETUJUI'
                 // Seminar.query({
                 //     status: 'DISETUJUI',
                 //     dosenId: ''
