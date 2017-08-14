@@ -192,6 +192,7 @@ dependencies {
     compile "org.postgresql:postgresql:9.4.1212"
     compile "com.h2database:h2"
     compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
+    compile "org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.0.RELEASE"
     testCompile "org.awaitility:awaitility:${awaitility_version}"
     testCompile "com.jayway.jsonpath:json-path"
     testCompile ("org.springframework.boot:spring-boot-starter-test") {
