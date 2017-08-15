@@ -21,10 +21,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 
 /**
@@ -45,13 +49,15 @@ public class SeminarServiceImpl implements SeminarService{
     private final PesertaSeminarMapper pesertaSeminarMapper;
 
     private final MailService mailService;
+    private final SpringTemplateEngine templateEngine;
 
-    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService, PesertaSeminarMapper pesertaSeminarMapper, MailService mailService) {
+    public SeminarServiceImpl(SeminarRepository seminarRepository, SeminarMapper seminarMapper, JadwalSeminarService jadwalSeminarService, PesertaSeminarMapper pesertaSeminarMapper, MailService mailService, SpringTemplateEngine templateEngine) {
         this.seminarRepository = seminarRepository;
         this.seminarMapper = seminarMapper;
         this.jadwalSeminarService = jadwalSeminarService;
         this.pesertaSeminarMapper = pesertaSeminarMapper;
         this.mailService = mailService;
+        this.templateEngine = templateEngine;
     }
 
     /**
@@ -215,5 +221,19 @@ public class SeminarServiceImpl implements SeminarService{
         query = "%" + query + "%";
         return seminarRepository.findAllByJudulContainsAndListPesertaSeminarsMahasiswaNotAndStatus(query, mahasiswa, status, pageable)
             .map(seminarMapper::toDto);
+    }
+
+    @Override
+    public String getPrintablePresenceList(Long idseminar) {
+        Seminar seminar = seminarRepository.findOne(idseminar);
+        if (seminar != null) {
+            Set<PesertaSeminar> pesertaSeminar = seminar.getListPesertaSeminars();
+            Locale locale = Locale.getDefault();
+            Context context = new Context(locale);
+            context.setVariable("seminar", seminar);
+            context.setVariable("pesertas", pesertaSeminar);
+            return templateEngine.process("../reports/presence-list", context);
+        }
+        return null;
     }
 }

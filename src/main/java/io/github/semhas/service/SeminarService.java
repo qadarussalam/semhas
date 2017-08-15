@@ -63,4 +63,6 @@ public interface SeminarService {
     Page<SeminarDTO> searchByJudulAndStatus(String query, StatusSeminar status, Pageable pageable);
 
     Page<SeminarDTO> searchByJudulAndUserNotRegisteredAndStatus(String query, Long idMahasiswa, StatusSeminar status, Pageable pageable);
+
+    String getPrintablePresenceList(Long idseminar);
 }
