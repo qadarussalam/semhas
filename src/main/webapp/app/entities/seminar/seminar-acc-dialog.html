@@ -60,7 +60,7 @@
             <select class="form-control" id="field_jadwalSeminar" name="jadwalSeminar" ng-model="jadwalSeminarOpt" 
                 ng-change="vm.selectJadwalSeminar(jadwalSeminarOpt)"
                 ng-options="jadwalSeminar as 
-                        'Tanggal ' +(jadwalSeminar.tanggal | date:'yyyy-MM-dd') + ' - Ruang ' + jadwalSeminar.ruangNama + ' - Sesi ' + jadwalSeminar.sesiUrutan
+                        'Tanggal ' +(jadwalSeminar.tanggal | date:'dd MMMM yyyy') + ' - Ruang ' + jadwalSeminar.ruangNama + ' - Sesi ' + jadwalSeminar.sesiUrutan
                         for jadwalSeminar in vm.jadwalseminars | orderBy:'id'"
                     required>
                 <option value=""></option>

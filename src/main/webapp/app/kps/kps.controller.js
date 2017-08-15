@@ -5,12 +5,14 @@
         .module('semhasApp')
         .controller('KpsController', KpsController);
 
-    KpsController.$inject = ['$state', 'PesertaSeminar', 'Seminar', 'Mahasiswa'];
+    KpsController.$inject = ['$rootScope', '$state', '$localStorage', '$uibModal', 'PesertaSeminar', 'Seminar', 'Mahasiswa'];
 
-    function KpsController($state, PesertaSeminar, Seminar, Mahasiswa) {
+    function KpsController($rootScope, $state, $localStorage, $uibModal, PesertaSeminar, Seminar, Mahasiswa) {
         var vm = this;
+        
+        vm.openDialogPrint = openDialogPrint;
 
-        var token = localStorage['jhi-authenticationToken'];
+        var token = $localStorage.authenticationToken;
         var data = jwt_decode(token);
 
         vm.mahasiswaId = data['semhas.mhsw'];
@@ -30,5 +32,26 @@
                 });
             });
         });
+        
+        function openDialogPrint() {
+            PesertaSeminar.printKps({
+                id: vm.mahasiswaId
+            }, function(data) {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'app/layouts/print/print-dialog.html',
+                    controller: 'PrintDialogController',
+                    controllerAs: 'vm',
+                    size: 'lg',
+                    resolve: {
+                        template: function () {
+                            return data.html;
+                        },
+                        title: function() {
+                            return 'kartu-peserta-seminar.pdf'
+                        }
+                    }
+                });
+            });
+        }
     }
 })();

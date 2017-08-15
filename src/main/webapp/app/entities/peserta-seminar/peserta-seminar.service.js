@@ -20,7 +20,21 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'printKps': {
+                url: 'api/mahasiswas/:id/kps/printable',
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        var result = {
+                            html: data
+                        }
+
+                        return result;
+                    }
+                    return data;
+                }
+            }
         });
     }
 })();

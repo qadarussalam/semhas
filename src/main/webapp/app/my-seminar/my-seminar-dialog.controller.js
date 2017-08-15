@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('MySeminarDialogController', MySeminarDialogController);
 
-    MySeminarDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'Principal', 'DataUtils', 'entity', 'Seminar', 'Mahasiswa', 'Dosen'];
+    MySeminarDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$localStorage', 'Principal', 'DataUtils', 'entity', 'Seminar', 'Mahasiswa', 'Dosen'];
 
-    function MySeminarDialogController ($timeout, $scope, $stateParams, $uibModalInstance, Principal, DataUtils, entity, Seminar, Mahasiswa, Dosen) {
+    function MySeminarDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $localStorage, Principal, DataUtils, entity, Seminar, Mahasiswa, Dosen) {
         var vm = this;
 
         vm.seminar = entity;
@@ -30,7 +30,7 @@
         function save () {
             vm.isSaving = true;
 
-            var token = localStorage['jhi-authenticationToken'];
+            var token = $localStorage.authenticationToken;
             var data = jwt_decode(token);
             
             vm.seminar.mahasiswaId = data['semhas.mhsw'];

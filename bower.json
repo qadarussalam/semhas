@@ -29,7 +29,9 @@
     "ng-file-upload": "12.0.4",
     "ngInfiniteScroll": "1.3.0",
     "swagger-ui": "2.1.5",
-    "jwt-decode": "^2.2.0"
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.18.1",
+    "angular-save-html-to-pdf": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.5.8"

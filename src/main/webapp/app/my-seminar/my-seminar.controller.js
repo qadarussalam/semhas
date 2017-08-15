@@ -5,12 +5,14 @@
         .module('semhasApp')
         .controller('MySeminarController', MySeminarController);
 
-    MySeminarController.$inject = ['$scope', '$state', 'Seminar', 'Mahasiswa'];
+    MySeminarController.$inject = ['$scope', '$state', '$localStorage', '$uibModal', 'Seminar', 'Mahasiswa'];
 
-    function MySeminarController($scope, $state, Seminar, Mahasiswa) {
+    function MySeminarController($scope, $state, $localStorage, $uibModal, Seminar, Mahasiswa) {
         var vm = this;
 
-        var token = localStorage['jhi-authenticationToken'];
+        vm.openDialogPrint = openDialogPrint;
+
+        var token = $localStorage.authenticationToken;
         var data = jwt_decode(token);
         var mahasiswaId = data['semhas.mhsw'];
 
@@ -21,7 +23,28 @@
 
             Mahasiswa.get({id: vm.mySeminar.mahasiswaId}, function(data2) {
                 vm.mahasiswa = data2;
-            })
-        })
+            });
+        });
+        
+        function openDialogPrint() {
+            Seminar.printPesertaSeminar({
+                idseminar: vm.mySeminar.id
+            }, function(data) {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'app/layouts/print/print-dialog.html',
+                    controller: 'PrintDialogController',
+                    controllerAs: 'vm',
+                    size: 'lg',
+                    resolve: {
+                        template: function () {
+                            return data.html;
+                        },
+                        title: function() {
+                            return 'peserta-seminar.pdf'
+                        }
+                    }
+                });
+            });
+        }
     }
 })();

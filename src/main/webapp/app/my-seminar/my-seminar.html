@@ -13,6 +13,18 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid" ng-show="vm.mySeminar != null">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="vm.openDialogPrint()">
+                    <span class="glyphicon glyphicon-print"></span> &nbsp;
+                    <span  data-translate="semhasApp.seminar.printPesertaSeminar">
+                        Print Peserta Seminar
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
     <br>
     <div class="panel panel-primary" ng-show="vm.mySeminar != null">
         <div class="panel-heading">
@@ -40,7 +52,7 @@
                 </dd>
                 <dt><span data-translate="semhasApp.seminar.jadwalSeminar">Jadwal Seminar</span></dt>
                 <dd>
-                    <span>{{vm.mySeminar.jadwalSeminarTanggal | date:'yyyy-MM-dd'}}</span>
+                    <span>{{vm.mySeminar.jadwalSeminarTanggal | date:'dd MMMM yyyy'}}</span>
                 </dd>
                 <dt><span data-translate="semhasApp.seminar.jamMulai">Jam Mulai</span></dt>
                 <dd>

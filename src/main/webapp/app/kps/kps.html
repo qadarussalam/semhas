@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="peserta-seminar.export" 
+                <button class="btn btn-primary" ng-click="vm.openDialogPrint()" 
                         ng-if="vm.seminars.length >= 10">
-                    <span class="glyphicon glyphicon-print"></span>
+                    <span class="glyphicon glyphicon-print"></span> &nbsp;
                     <span  data-translate="semhasApp.kps.printKps">
                         Print KPS
                     </span>

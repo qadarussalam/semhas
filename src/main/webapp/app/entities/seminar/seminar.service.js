@@ -27,6 +27,20 @@
                 url: 'api/seminars/:id/pesertas',
                 method: 'GET',
                 isArray: true
+            },
+            'printPesertaSeminar': {
+                url: '/api/seminars/:idseminar/presence-checklist/printable',
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        var result = {
+                            html: data
+                        }
+
+                        return result;
+                    }
+                    return data;
+                }
             }
         });
     }

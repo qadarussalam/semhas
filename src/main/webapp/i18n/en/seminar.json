@@ -17,6 +17,7 @@
             "detail": {
                 "title": "Seminar"
             },
+            "printPesertaSeminar": "Print Peserta Seminar",
             "judul": "Judul",
             "abstrak": "Abstrak",
             "fileAccSeminar": "File Acc Seminar",

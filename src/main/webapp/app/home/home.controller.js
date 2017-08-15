@@ -5,9 +5,9 @@
         .module('semhasApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', '$filter', 'Principal', 'LoginService', '$state', '$uibModal', 'Seminar', 'Mahasiswa'];
+    HomeController.$inject = ['$scope', '$filter', '$localStorage', 'Principal', 'LoginService', '$state', '$uibModal', 'Seminar', 'Mahasiswa'];
 
-    function HomeController ($scope, $filter, Principal, LoginService, $state, $uibModal, Seminar, Mahasiswa) {
+    function HomeController ($scope, $filter, $localStorage, Principal, LoginService, $state, $uibModal, Seminar, Mahasiswa) {
         var vm = this;
 
         vm.openSeminarAccDialog = openSeminarAccDialog;
@@ -39,7 +39,7 @@
             // User is Mahasiswa
             var filters = $filter('filter')(account.authorities, 'ROLE_MAHASISWA', true);
             if(filters.length > 0) {
-                var token = localStorage['jhi-authenticationToken'];
+                var token = $localStorage.authenticationToken;
                 var data = jwt_decode(token);
 
                 vm.mahasiswaId = data['semhas.mhsw'];
@@ -48,9 +48,6 @@
                     q: '',
                     'not-registered-by': vm.mahasiswaId,
                     status: 'DISETUJUI'
-                // Seminar.query({
-                //     status: 'DISETUJUI',
-                //     dosenId: ''
                 }, function(data) {
                     vm.seminars = data;
 
@@ -86,7 +83,7 @@
             // User is Dosen
             var filters = $filter('filter')(account.authorities, 'ROLE_DOSEN', true);
             if(filters.length > 0) {
-                var token = localStorage['jhi-authenticationToken'];
+                var token = $localStorage.authenticationToken;
                 var data = jwt_decode(token);
 
                 vm.dosenId = data['semhas.dosn'];
